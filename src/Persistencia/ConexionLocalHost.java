@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class Conexion {
+public class ConexionLocalHost{
     private static Connection con;
     //JDBC driver y url
     private static final String JDBC_Driver="com.mysql.cj.jdbc.Driver";
@@ -12,17 +12,18 @@ public class Conexion {
     //com.mysql.jdbc.Driver //org.gjt.mm.mysql.Driver
     
     private static final String url="jdbc:mysql://"
-            + "bibw7bucdseuvvxngiow-mysql.services.clever-cloud.com" //HOST
+            + "localhost" //HOST
             + ":3306" //PORT
-            + "/bibw7bucdseuvvxngiow"; //DBNAME
+            + "/ConstructoraAcme"; //DBNAME
     
     //Credenciales
-    private static final String user="utgaevgccfl63stq";
-    private static final String pass="OsA0ld0zIEcUQJdwZCLO";
+    private static final String user="root";
+    private static final String pass="";
+    private static final String descripcion="LocalHost de Mysql";
 
-    private static final String descripcion="CLEVER CLOUD";
+    private ConexionLocalHost() {
+    }
 
-    
     public static Connection getInstance() {
         if (con == null) {
             try {

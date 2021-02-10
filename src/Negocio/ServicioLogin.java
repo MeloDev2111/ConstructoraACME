@@ -1,11 +1,12 @@
 package Negocio;
 
-//import Persistencia.DAOUsuarios;
-//import Persistencia.DAOUsuariosImpl;
+
+import Persistencia.FactoriaDAO.IUsuarioDao;
 import javax.swing.JOptionPane;
 
-public class ServicioLogin {
-//    DAOUsuarios dao = new DAOUsuariosImpl();
+public class ServicioLogin implements IBDAccess{
+    
+    IUsuarioDao dao = fabrica.getUsuarioDao();
     Usuario userBD;
     
     public Usuario iniciarSesion(Usuario usuario){
@@ -27,7 +28,7 @@ public class ServicioLogin {
     
     private boolean verificarExistencia(Usuario usuario){
         try {
-//            userBD = dao.buscarUsuarioByname(usuario);
+            userBD = dao.buscarxNombre(usuario.getNombreUsuario());
         } catch (Exception ex) {
             System.out.println("ERROR al buscar usuario por nombre");
             userBD = new Usuario();
