@@ -5,6 +5,6 @@ import Persistencia.FactoriaDAO.FabricaDao;
 
 /*@author MelioDev*/
 
-public interface IBDAccess {
+public interface IDBAccess {
     FabricaDao fabrica = FabricaDao.getDAOFactory(ETiposFabricaDao.MYSQL);
 }

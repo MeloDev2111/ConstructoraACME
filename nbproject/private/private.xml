@@ -4,14 +4,10 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/Josue/UNS-temp/Arquitectura/Miniprojecto_2_Constructora/ConstructoraAcme/src/Presentacion/PresentadorLogin.java</file>
-            <file>file:/D:/Josue/UNS-temp/Arquitectura/Miniprojecto_2_Constructora/ConstructoraAcme/src/Persistencia/FactoriaDAO/UsuarioDao.java</file>
-            <file>file:/D:/Josue/UNS-temp/Arquitectura/Miniprojecto_2_Constructora/ConstructoraAcme/src/Persistencia/FactoriaDAO/TiposFactoriaDAO.java</file>
-            <file>file:/D:/Josue/UNS-temp/Arquitectura/Miniprojecto_2_Constructora/ConstructoraAcme/src/Persistencia/FactoriaDAO/IBDAccess.java</file>
-            <file>file:/D:/Josue/UNS-temp/Arquitectura/Miniprojecto_2_Constructora/ConstructoraAcme/src/Persistencia/FactoriaDAO/FabricaDao.java</file>
-            <file>file:/D:/Josue/UNS-temp/Arquitectura/Miniprojecto_2_Constructora/ConstructoraAcme/src/Persistencia/FactoriaDAO/UsuarioDaoMysql.java</file>
-            <file>file:/D:/Josue/UNS-temp/Arquitectura/Miniprojecto_2_Constructora/ConstructoraAcme/src/Persistencia/ConexionCleverCloud.java</file>
-            <file>file:/D:/Josue/UNS-temp/Arquitectura/Miniprojecto_2_Constructora/ConstructoraAcme/src/Persistencia/FactoriaDAO/FabricaDaoFicheros.java</file>
-            <file>file:/D:/Josue/UNS-temp/Arquitectura/Miniprojecto_2_Constructora/ConstructoraAcme/src/Persistencia/FactoriaDAO/FabricaDaoMysql.java</file>
+            <file>file:/D:/Josue/UNS-temp/Arquitectura/Miniprojecto_2_Constructora/ConstructoraAcme/src/Presentacion/VEmpleado.java</file>
+            <file>file:/D:/Josue/UNS-temp/Arquitectura/Miniprojecto_2_Constructora/ConstructoraAcme/src/Persistencia/FactoriaDAO/Mysql/UsuarioDaoMysql.java</file>
+            <file>file:/D:/Josue/UNS-temp/Arquitectura/Miniprojecto_2_Constructora/ConstructoraAcme/src/Presentacion/VLogin.java</file>
+            <file>file:/D:/Josue/UNS-temp/Arquitectura/Miniprojecto_2_Constructora/ConstructoraAcme/src/Presentacion/VListaMateriales.java</file>
         </group>
     </open-files>
 </project-private>

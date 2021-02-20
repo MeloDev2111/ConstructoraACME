@@ -1,11 +1,13 @@
 package Negocio;
 
 public class Usuario {
-    protected String idUsuario;
-    protected String tipoUsuario;
-    protected String nombreUsuario;
-    protected String contraseña;
-
+    private String idUsuario;
+    private TiposUsuario tipoUsuario;
+    private String nombreUsuario;
+    private String nombreCuenta;
+    private String contraseña;
+    private boolean activo;
+    
     public Usuario() {
     }
     
@@ -13,7 +15,7 @@ public class Usuario {
         this.idUsuario = idUsuario;
         this.nombreUsuario = nombreCuenta;
         this.contraseña = contraseña;
-        this.tipoUsuario = tipoCuenta;
+        this.tipoUsuario = TiposUsuario.valueOf(tipoCuenta);
     }
 
     public String getIdUsuario() {
@@ -24,12 +26,28 @@ public class Usuario {
         this.idUsuario = idUsuario;
     }
 
+    public TiposUsuario getTipoUsuario() {
+        return tipoUsuario;
+    }
+
+    public void setTipoUsuario(TiposUsuario tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
+    }
+
     public String getNombreUsuario() {
         return nombreUsuario;
     }
 
     public void setNombreUsuario(String nombreUsuario) {
         this.nombreUsuario = nombreUsuario;
+    }
+
+    public String getNombreCuenta() {
+        return nombreCuenta;
+    }
+
+    public void setNombreCuenta(String nombreCuenta) {
+        this.nombreCuenta = nombreCuenta;
     }
 
     public String getContraseña() {
@@ -40,17 +58,17 @@ public class Usuario {
         this.contraseña = contraseña;
     }
 
-    public String getTipoUsuario() {
-        return tipoUsuario;
+    public boolean isActivo() {
+        return activo;
     }
 
-    public void setTipoUsuario(String tipodeCuenta) {
-        this.tipoUsuario = tipodeCuenta;
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
 
     @Override
     public String toString() {
-        return "Usuario{" + "idUsuario=" + idUsuario + ", nombreCuenta=" + nombreUsuario + ", contrase\u00f1a=" + contraseña + ", tipoCuenta=" + tipoUsuario + '}';
+        return "Usuario{" + "idUsuario=" + idUsuario + ", tipoUsuario=" + tipoUsuario + ", nombreUsuario=" + nombreUsuario + ", nombreCuenta=" + nombreCuenta + ", contrase\u00f1a=" + contraseña + ", activo=" + activo + '}';
     }
-    
+
 }

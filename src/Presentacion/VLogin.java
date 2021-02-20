@@ -1,11 +1,13 @@
 package Presentacion;
 
+import Apoyo.Mensajes;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class VLogin extends javax.swing.JPanel {
     private JFrame frame = new JFrame("LOGIN");
     private PresentadorLogin presentador;
+    private Mensajes msg = new Mensajes();
     public VLogin() {
         initComponents();
     }
@@ -154,10 +156,10 @@ public class VLogin extends javax.swing.JPanel {
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
         if ("".equals(lblNombreCuenta.getText())) {
-            this.mostrarMensajeAdvertencia("DEBE INGRESAR EL USUARIO!");
+            msg.advertenciaMsg("Cuidado!", "DEBE INGRESAR EL USUARIO!");
         }else{
             if ("".equals(String.valueOf(lblContraseña.getPassword()))) {
-                this.mostrarMensajeAdvertencia("DEBE INGRESAR LA CONTRASEÑA!!");
+                msg.advertenciaMsg("Cuidado!", "DEBE INGRESAR LA CONTRASEÑA!!");
             }else{
                 presentador.iniciarSesion();
             }
@@ -188,17 +190,7 @@ public class VLogin extends javax.swing.JPanel {
     public String getContraseña(){
         return String.valueOf(lblContraseña.getPassword());
     }
-    public void mostrarMensajeError(String msg){
-        JOptionPane.showMessageDialog(null,
-                msg,
-                "ERROR",JOptionPane.ERROR_MESSAGE);
-    }
-    public void mostrarMensajeAdvertencia(String msg){
-        JOptionPane.showMessageDialog(null,
-                msg,
-                "CUIDADO",JOptionPane.WARNING_MESSAGE);
-    }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelFormulario;
     private javax.swing.JPanel PanelPresentacion;

@@ -1,48 +1,47 @@
 package Negocio;
 
-
+import Apoyo.Mensajes;
 import Persistencia.FactoriaDAO.IUsuarioDao;
-import javax.swing.JOptionPane;
 
-public class ServicioLogin implements IBDAccess{
-    
+public class ServicioLogin implements IDBAccess{
     IUsuarioDao dao = fabrica.getUsuarioDao();
+    Mensajes msg = new Mensajes();
     Usuario userBD;
     
     public Usuario iniciarSesion(Usuario usuario){
               
         if (!verificarExistencia(usuario)) {
-            mostrarMensajeError("ESTA CUENTA NO EXISTE!");
+            msg.errorMsg("ESTA CUENTA NO EXISTE!");
             return usuario;
         }
         
         //REVISAR SI ESTA ACTIVO(HUESPEDES DESALOJADOS)
         
         if (!verificarContraseña(usuario)) {
-            mostrarMensajeError("CONTRASEÑA INCORRECTA!");
+            msg.errorMsg("CONTRASEÑA INCORRECTA!");
             return usuario;
         }
-            
+        
+        if (!userBD.isActivo()) {
+            msg.errorMsg("USUARIO DESHABILITADO");    
+            return usuario; 
+        }
+        
         return userBD;
     }
     
     private boolean verificarExistencia(Usuario usuario){
-        try {
-            userBD = dao.buscarxNombre(usuario.getNombreUsuario());
-        } catch (Exception ex) {
-            System.out.println("ERROR al buscar usuario por nombre");
-            userBD = new Usuario();
+        userBD = dao.buscarxNombre(usuario.getNombreCuenta());
+        
+        if (userBD == null) {
+            return false;
         }
-        return (userBD.getIdUsuario()!=null);          
+        
+        return true;       
     }
     
     private boolean verificarContraseña(Usuario usuario){
         return userBD.getContraseña().equals(usuario.getContraseña());
     }
     
-    private void mostrarMensajeError(String msg){
-        JOptionPane.showMessageDialog(null,
-                msg,
-                "ERROR",JOptionPane.ERROR_MESSAGE);
-    }
 }

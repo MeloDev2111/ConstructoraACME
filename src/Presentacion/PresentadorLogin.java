@@ -1,20 +1,25 @@
 package Presentacion;
 
+import Apoyo.Mensajes;
+import Negocio.Empleado;
+import Negocio.ServicioEmpleados;
 import Negocio.ServicioLogin;
 import Negocio.Usuario;
 
 public class PresentadorLogin {
     private Usuario user;
     private VLogin vista;
-
+    
+    private Mensajes msg = new Mensajes();
+    private ServicioLogin servicioLogin = new ServicioLogin();
+    private ServicioEmpleados servicioEmpleados = new ServicioEmpleados();
     public PresentadorLogin(VLogin vista) {
         this.user = new Usuario();
         this.vista = vista;
     }
     
     public void iniciarSesion(){
-        ServicioLogin servicioLogin = new ServicioLogin();
-        user.setNombreUsuario(vista.getNombreCuenta());
+        user.setNombreCuenta(vista.getNombreCuenta());
         user.setContraseña(vista.getContraseña());
         
         user = servicioLogin.iniciarSesion(user);
@@ -26,27 +31,32 @@ public class PresentadorLogin {
         if (user.getIdUsuario()!=null) {
             System.out.println("LOGGING...");
             switch (user.getTipoUsuario()) {
-                case "ADMINISTRADOR":
-                    vista.mostrarMensajeAdvertencia("PRONTO DISPONIBLE VISTA ADMINISTRADOR, C;");
+                case ADMINISTRADOR:
+                    msg.advertenciaMsg("Mensajito!","PRONTO DISPONIBLE VISTA ADMINISTRADOR, C;");
                     break;
-                case "RECEPCIONISTA":
-                    //AQUI PROXIMAMENTE IRA LA CLASE RECEPCIONISTA -- SE VIENEN BASTANTES CAMBIOS
-//                    VistaRecepcion vistaRecep = new VistaRecepcion();
-//
-//                    PresentadorRecepcion presentadorRecep = new PresentadorRecepcion(user,vistaRecep);
-//                    vistaRecep.setPresentador(presentadorRecep);
-//
-//                    vistaRecep.iniciar();
-//                    vistaRecep.setNombreCuenta(user.getNombreUsuario());
-
-                    vista.cerrar();
+                case EMPLEADO:
+                    
+                    VEmpleado vEmpleados = new VEmpleado();
+                    Empleado emp = servicioEmpleados.buscarEmpleado(user);
+                    
+                    PresentadorEmpleado pEmpleado = new PresentadorEmpleado(vEmpleados, emp);
+                    vEmpleados.setPresentador(pEmpleado);
+                    vEmpleados.setTitulo(emp.getNombre());
+                    
+                    vEmpleados.iniciar();
+                    this.vista.cerrar();
                     break;
-                case "HUESPED":
-                    vista.mostrarMensajeAdvertencia("PRONTO DISPONIBLE VISTA HUESPED, C;");
+                case RESPONSABLEAREA:
+                    msg.advertenciaMsg("Mensajito!","PRONTO DISPONIBLE VISTA RESPONSABLEAREA, C;");
                     break;
+                case RESPONSABLECOMPRA:
+                    msg.advertenciaMsg("Mensajito!","PRONTO DISPONIBLE VISTA RESPONSABLECOMPRA, C;");
+                    break;  
                 default:
-                    vista.mostrarMensajeError("SU VISTA AUN NO HA SIDO CREADA");
-            } 
+                    msg.advertenciaMsg("Mensajito!","SU VISTA AUN NO HA SIDO CREADA");
+                    break;
+            }
+            
         }
         
     }
