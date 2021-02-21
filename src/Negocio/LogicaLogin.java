@@ -3,7 +3,7 @@ package Negocio;
 import Apoyo.Mensajes;
 import Persistencia.FactoriaDAO.IUsuarioDao;
 
-public class ServicioLogin implements IDBAccess{
+public class LogicaLogin implements IDBAccess{
     IUsuarioDao dao = fabrica.getUsuarioDao();
     Mensajes msg = new Mensajes();
     Usuario userBD;

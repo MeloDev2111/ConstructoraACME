@@ -166,7 +166,12 @@ public class VEmpleado extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRequerimientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRequerimientosActionPerformed
-        // TODO add your handling code here:
+        if (tableProyectos.getSelectedRow()!=-1) {
+            presentador.mostrarVRequerimientos();
+        }else{
+            msg.errorMsg("DEBE SELECCIONAR UN PROYECTO");
+        }
+        
     }//GEN-LAST:event_btnRequerimientosActionPerformed
 
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
@@ -193,12 +198,18 @@ public class VEmpleado extends javax.swing.JPanel {
     public void setTitulo(String nombre){
         this.txtTitulo.setText("PROYECTO DEL EMPLEADO : "+nombre);
     }
+    
     public void setListaProyectos(Object[][] listaProyectos){
         String[] cabezera = {"Id", "Nombre del Proyecto"};
         this.tableProyectos.setModel(new javax.swing.table.DefaultTableModel(
             listaProyectos,
             cabezera
         ));
+    }
+    
+    public String getidProyectoSeleccionado(){
+        int pos = tableProyectos.getSelectedRow();
+        return tableProyectos.getValueAt(pos, 0).toString();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

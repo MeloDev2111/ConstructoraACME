@@ -2,8 +2,8 @@ package Presentacion;
 
 import Apoyo.Mensajes;
 import Negocio.Empleado;
-import Negocio.ServicioEmpleados;
-import Negocio.ServicioLogin;
+import Negocio.LogicaEmpleados;
+import Negocio.LogicaLogin;
 import Negocio.Usuario;
 
 public class PresentadorLogin {
@@ -11,8 +11,9 @@ public class PresentadorLogin {
     private VLogin vista;
     
     private Mensajes msg = new Mensajes();
-    private ServicioLogin servicioLogin = new ServicioLogin();
-    private ServicioEmpleados servicioEmpleados = new ServicioEmpleados();
+    private LogicaLogin logiLogin = new LogicaLogin();
+    private LogicaEmpleados logiEmpleados = new LogicaEmpleados();
+    
     public PresentadorLogin(VLogin vista) {
         this.user = new Usuario();
         this.vista = vista;
@@ -22,7 +23,7 @@ public class PresentadorLogin {
         user.setNombreCuenta(vista.getNombreCuenta());
         user.setContraseña(vista.getContraseña());
         
-        user = servicioLogin.iniciarSesion(user);
+        user = logiLogin.iniciarSesion(user);
         
         mostrarVentanaUsuario();
     }
@@ -37,7 +38,7 @@ public class PresentadorLogin {
                 case EMPLEADO:
                     
                     VEmpleado vEmpleados = new VEmpleado();
-                    Empleado emp = servicioEmpleados.buscarEmpleado(user);
+                    Empleado emp = logiEmpleados.buscarEmpleado(user);
                     
                     PresentadorEmpleado pEmpleado = new PresentadorEmpleado(vEmpleados, emp);
                     vEmpleados.setPresentador(pEmpleado);

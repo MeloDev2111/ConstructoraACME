@@ -7,4 +7,6 @@ import java.util.ArrayList;
 /*@author MelioDev*/
 public interface IProyectoDao extends IDaoCrud<Proyecto>{
      public abstract ArrayList<Proyecto> listarProyectosxEmpleado(String idEmpleado);
+     public abstract Proyecto buscar(String idProyecto);
+     
 }

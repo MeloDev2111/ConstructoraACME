@@ -1,11 +1,12 @@
 package Negocio;
 
+
 /* @author MeloDev */
 public class Proyecto {
     private String idProyecto;
     private String nombreProyecto;
     private Empleado empleado;
-
+    
     public String getIdProyecto() {
         return idProyecto;
     }

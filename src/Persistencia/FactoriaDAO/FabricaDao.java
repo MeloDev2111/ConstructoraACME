@@ -8,8 +8,9 @@ public abstract class FabricaDao {
     public abstract IUsuarioDao getUsuarioDao();
     public abstract IEmpleadoDao getEmpleadoDao();
     public abstract IProyectoDao getProyectoDao();
-    //public abstract OrderDAO getOrderDAO();
-
+    public abstract IRequerimientoDao getRequerimientoDao();
+    public abstract IAreaDao getAreaDao();
+    
     public static FabricaDao getDAOFactory(ETiposFabricaDao tipo) {
 
       switch (tipo) {

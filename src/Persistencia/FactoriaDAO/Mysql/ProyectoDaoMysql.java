@@ -1,6 +1,5 @@
 package Persistencia.FactoriaDAO.Mysql;
 
-import Negocio.Empleado;
 import Negocio.Proyecto;
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -21,6 +20,7 @@ public class ProyectoDaoMysql implements IProyectoDao{
         ArrayList<Proyecto> lista =null;
         
         EmpleadoDaoMysql daoEmp = new EmpleadoDaoMysql(conexion);
+        
         try {
             PreparedStatement st = this.conexion.prepareStatement(sql);
             st.setString(1, idEmpleado);   
@@ -33,7 +33,6 @@ public class ProyectoDaoMysql implements IProyectoDao{
                 pro.setIdProyecto(rs.getString("idProyecto"));
                 pro.setNombreProyecto(rs.getString("nombreProyecto"));
                 pro.setEmpleado(daoEmp.buscar(rs.getString("idEmpleado")));
-                
                 lista.add(pro);
             }
             rs.close();
@@ -46,7 +45,38 @@ public class ProyectoDaoMysql implements IProyectoDao{
         
         return lista;
     }
-
+    
+    @Override
+    public Proyecto buscar(String idProyecto) {
+        String sql ="SELECT * FROM Proyectos WHERE idProyecto=?";
+        Proyecto pro =null;
+        
+        EmpleadoDaoMysql daoEmp = new EmpleadoDaoMysql(conexion);
+        
+        try {
+            PreparedStatement st = this.conexion.prepareStatement(sql);
+            st.setString(1, idProyecto);   
+            
+            ResultSet rs = st.executeQuery(); //ejecutar el codigo sql ya sea ddl o dml??//ITERATOR? QUE ES ESTO? 
+            
+            pro = new Proyecto();
+            while (rs.next()) {
+                pro.setIdProyecto(rs.getString("idProyecto"));
+                pro.setNombreProyecto(rs.getString("nombreProyecto"));
+                pro.setEmpleado(daoEmp.buscar(rs.getString("idEmpleado")));
+            }
+            
+            rs.close();
+            st.close();
+            
+            
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } 
+        
+        return pro;
+    }
+    
     @Override
     public Proyecto registrar(Proyecto obj) {
         throw new UnsupportedOperationException("Not supported yet.");
@@ -66,5 +96,6 @@ public class ProyectoDaoMysql implements IProyectoDao{
     public Proyecto eliminar(Proyecto obj) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+
 
 }

@@ -3,7 +3,7 @@ package Negocio;
 import Apoyo.Mensajes;
 import Persistencia.FactoriaDAO.IEmpleadoDao;
 
-public class ServicioEmpleados implements IDBAccess{
+public class LogicaEmpleados implements IDBAccess{
     IEmpleadoDao dao = fabrica.getEmpleadoDao();
     Mensajes msg = new Mensajes();
     

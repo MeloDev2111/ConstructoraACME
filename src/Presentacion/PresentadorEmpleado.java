@@ -1,15 +1,17 @@
 package Presentacion;
 
+import Apoyo.Formateo;
 import Negocio.Empleado;
-import Negocio.ServicioProyectos;
+import Negocio.Proyecto;
+import Negocio.LogicaProyectos;
 
 /* @author MeloDev */
 public class PresentadorEmpleado {
     private VEmpleado vista;
     private Empleado empleado;
     
-    private ServicioProyectos servicio = new ServicioProyectos();
-            
+    private LogicaProyectos logica = new LogicaProyectos();
+    private Formateo format = new Formateo();
     public PresentadorEmpleado(VEmpleado vista, Empleado empleado) {
         this.vista = vista;
         this.empleado = empleado;
@@ -26,10 +28,18 @@ public class PresentadorEmpleado {
     }
 
     public void establecerTablaProyectos() {
-        vista.setListaProyectos(servicio.listarProyectos(empleado));
+        vista.setListaProyectos( 
+                format.formatoJtable( logica.cargarProyectos(empleado) ) 
+        );
     }
-    
-    
-    
+
+    public void mostrarVRequerimientos() {
+        Proyecto proyecto = logica.buscar(vista.getidProyectoSeleccionado());
+        VRequerimiento vReq = new VRequerimiento();
+        PresentadorRequerimientos pReq = new PresentadorRequerimientos(proyecto, vReq);
+        vReq.setPresentador(pReq);
+        vReq.iniciar();
+        this.vista.cerrar();
+    }
     
 }
