@@ -278,7 +278,7 @@ public class VRequerimiento extends javax.swing.JPanel {
         this.lblTitulo.setText("REQUERIMIENTOS DEL PROYECTO:"+nombre);
     }
     
-    public void setTablaProyectos(Object[][] listaRequerimientos){
+    public void setTablaRequerimientos(Object[][] listaRequerimientos){
         String[] cabezera = {"Id", "Etapa", "Area", "Estado"};
         this.TblRequerimientos.setModel(new javax.swing.table.DefaultTableModel(
             listaRequerimientos,

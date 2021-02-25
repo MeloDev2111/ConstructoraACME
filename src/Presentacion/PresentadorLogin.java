@@ -1,10 +1,10 @@
 package Presentacion;
 
 import Apoyo.Mensajes;
-import Negocio.Empleado;
-import Negocio.LogicaEmpleados;
-import Negocio.LogicaLogin;
-import Negocio.Usuario;
+import Modelo.Empleado;
+import Modelo.LogicaEmpleados;
+import Modelo.LogicaLogin;
+import Modelo.Usuario;
 
 public class PresentadorLogin {
     private Usuario user;

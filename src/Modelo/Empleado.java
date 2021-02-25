@@ -1,4 +1,4 @@
-package Negocio;
+package Modelo;
 
 /* @author MeloDev */
 public class Empleado {

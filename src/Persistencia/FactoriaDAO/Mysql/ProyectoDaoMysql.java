@@ -1,6 +1,6 @@
 package Persistencia.FactoriaDAO.Mysql;
 
-import Negocio.Proyecto;
+import Modelo.Proyecto;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.sql.PreparedStatement;

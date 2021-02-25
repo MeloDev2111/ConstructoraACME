@@ -11,4 +11,6 @@ public interface IDaoCrud<T> {
     public abstract T actualizar(T obj);
     
     public abstract T eliminar(T obj);
+    
+    public abstract T buscar(String id);
 }

@@ -1,69 +1,65 @@
 package Persistencia.FactoriaDAO.Mysql;
 
-import Modelo.Area;
-import Modelo.Proyecto;
-import Persistencia.FactoriaDAO.IAreaDao;
+import Modelo.Suministros.Unidad;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import Persistencia.FactoriaDAO.IUnidadDao;
 
-public class AreaDaoMysql implements IAreaDao{
+public class UnidadDaoMysql implements IUnidadDao{
     private Connection conexion;
 
-    public AreaDaoMysql(Connection con) {
+    public UnidadDaoMysql(Connection con) {
         conexion=con;
     }
-
     @Override
-    public Area buscar(String idArea) {
-        String sql ="SELECT * FROM Areas WHERE idArea=?";
-        Area area =null;
-        
-        EmpleadoDaoMysql daoEmp = new EmpleadoDaoMysql(conexion);
+    public Unidad buscar(String id) {
+        String sql ="SELECT * FROM Unidades WHERE idUnidad=?";
+        Unidad uni =null;
         
         try {
             PreparedStatement st = this.conexion.prepareStatement(sql);
-            st.setString(1, idArea);   
+            st.setString(1, id);   
             
             ResultSet rs = st.executeQuery(); //ejecutar el codigo sql ya sea ddl o dml??//ITERATOR? QUE ES ESTO? 
             
-            area = new Area();
+            uni = new Unidad();
             while (rs.next()) {
-                area.setIdArea( rs.getString("idArea") );
-                area.setNombreArea( rs.getString("NombreArea") );
-                area.setPrefijo( rs.getString("prefijo") );
+                uni.setIdUnidad(rs.getString("idUnidad"));
+                uni.setNombreUnidad(rs.getString("nombreUnidad"));
+                uni.setAbrevUnidad(rs.getString("abrevUnidad"));
             }
             
             rs.close();
             st.close();
             
-            
         } catch (Exception e) {
             System.out.println(e.getMessage());
         } 
         
-        return area;
+        return uni;
     }
     
     @Override
-    public Area registrar(Area obj) {
+    public Unidad registrar(Unidad obj) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public ArrayList<Area> listado() {
+    public ArrayList<Unidad> listado() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public Area actualizar(Area obj) {
+    public Unidad actualizar(Unidad obj) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public Area eliminar(Area obj) {
+    public Unidad eliminar(Unidad obj) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+   
 
 }

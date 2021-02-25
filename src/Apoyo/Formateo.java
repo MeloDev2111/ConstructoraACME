@@ -1,7 +1,8 @@
 package Apoyo;
 
-import Negocio.Proyecto;
-import Negocio.Requerimiento;
+import Modelo.Proyecto;
+import Modelo.Requerimiento;
+import Modelo.Suministros.Material;
 import java.util.ArrayList;
 
 /* @author MeloDev */
@@ -34,5 +35,35 @@ public class Formateo {
         return R;
     }
     
-    
+    public Object[][] formatoJtableMateriales(ArrayList<Material> materiales){
+        Object[][] M = new Object[materiales.size()][5];
+        
+        int i=0;
+        for (Material m : materiales) {
+            M[i][0]=m.getIdMaterial();
+            M[i][1]=m.getNombreMaterial();
+            M[i][2]=m.getGrupo().getNombreGrupo();
+            M[i][3]=m.getUnidad().getNombreUnidad();
+            M[i][4]=m.getTipo();
+            i++;
+        }
+       
+        return M;
+    }
+ /*   
+     public Object[][] formatoJtableMateriales(ArrayList<> materiales){
+        Object[][] M = new Object[materiales.size()][4];
+        
+        int i=0;
+        for (Material m : materiales) {
+            M[i][0]=m.get;
+            M[i][1]=m.get;
+            M[i][2]=m.get;
+            M[i][3]=m.get;
+            i++;
+        }
+       
+        return M;
+    }   
+    */
 }

@@ -1,68 +1,63 @@
 package Persistencia.FactoriaDAO.Mysql;
 
-import Modelo.Area;
-import Modelo.Proyecto;
-import Persistencia.FactoriaDAO.IAreaDao;
+import Modelo.Suministros.Grupo;
+import Persistencia.FactoriaDAO.IGrupoDao;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-public class AreaDaoMysql implements IAreaDao{
+public class GrupoDaoMysql implements IGrupoDao{
     private Connection conexion;
 
-    public AreaDaoMysql(Connection con) {
+    public GrupoDaoMysql(Connection con) {
         conexion=con;
     }
 
     @Override
-    public Area buscar(String idArea) {
-        String sql ="SELECT * FROM Areas WHERE idArea=?";
-        Area area =null;
-        
-        EmpleadoDaoMysql daoEmp = new EmpleadoDaoMysql(conexion);
+    public Grupo buscar(String id) {
+        String sql ="SELECT * FROM Grupos WHERE idGrupo=?";
+        Grupo gru =null;
         
         try {
             PreparedStatement st = this.conexion.prepareStatement(sql);
-            st.setString(1, idArea);   
+            st.setString(1, id);   
             
             ResultSet rs = st.executeQuery(); //ejecutar el codigo sql ya sea ddl o dml??//ITERATOR? QUE ES ESTO? 
             
-            area = new Area();
+            gru = new Grupo();
             while (rs.next()) {
-                area.setIdArea( rs.getString("idArea") );
-                area.setNombreArea( rs.getString("NombreArea") );
-                area.setPrefijo( rs.getString("prefijo") );
+                gru.setIdGrupo(rs.getString("idGrupo"));
+                gru.setNombreGrupo(rs.getString("nombreGrupo"));
             }
             
             rs.close();
             st.close();
             
-            
         } catch (Exception e) {
             System.out.println(e.getMessage());
         } 
         
-        return area;
+        return gru;
     }
-    
+
     @Override
-    public Area registrar(Area obj) {
+    public Grupo registrar(Grupo obj) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public ArrayList<Area> listado() {
+    public ArrayList<Grupo> listado() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public Area actualizar(Area obj) {
+    public Grupo actualizar(Grupo obj) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public Area eliminar(Area obj) {
+    public Grupo eliminar(Grupo obj) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

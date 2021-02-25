@@ -1,4 +1,4 @@
-package Negocio;
+package Modelo;
 
 public enum TiposUsuario {
     ADMINISTRADOR, EMPLEADO, RESPONSABLEAREA,RESPONSABLECOMPRA

@@ -1,9 +1,9 @@
 package Presentacion;
 
 import Apoyo.Formateo;
-import Negocio.Empleado;
-import Negocio.LogicaRequerimientos;
-import Negocio.Proyecto;
+import Modelo.Empleado;
+import Modelo.LogicaRequerimientos;
+import Modelo.Proyecto;
 
 /* @author MeloDev */
 public class PresentadorRequerimientos {
@@ -20,7 +20,7 @@ public class PresentadorRequerimientos {
     }
 
     public void establecerTablaRequerimientos() {
-        vista.setTablaProyectos(
+        vista.setTablaRequerimientos(
                 format.formatoJtableReqs( logica.cargarRequerimientos(mProyecto) )
         );
     }

@@ -1,4 +1,4 @@
-package Negocio;
+package Modelo;
 
 import Persistencia.FactoriaDAO.ETiposFabricaDao;
 import Persistencia.FactoriaDAO.FabricaDao;

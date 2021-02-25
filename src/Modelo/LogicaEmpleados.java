@@ -1,4 +1,4 @@
-package Negocio;
+package Modelo;
 
 import Apoyo.Mensajes;
 import Persistencia.FactoriaDAO.IEmpleadoDao;

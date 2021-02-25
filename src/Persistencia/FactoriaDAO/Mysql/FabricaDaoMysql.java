@@ -6,8 +6,11 @@ import Persistencia.FabricaConexiones;
 import Persistencia.FactoriaDAO.FabricaDao;
 import Persistencia.FactoriaDAO.IAreaDao;
 import Persistencia.FactoriaDAO.IEmpleadoDao;
+import Persistencia.FactoriaDAO.IGrupoDao;
+import Persistencia.FactoriaDAO.IMaterialDao;
 import Persistencia.FactoriaDAO.IProyectoDao;
 import Persistencia.FactoriaDAO.IRequerimientoDao;
+import Persistencia.FactoriaDAO.IUnidadDao;
 import Persistencia.FactoriaDAO.IUsuarioDao;
 
 public class FabricaDaoMysql extends FabricaDao{
@@ -36,6 +39,21 @@ public class FabricaDaoMysql extends FabricaDao{
     @Override
     public IAreaDao getAreaDao() {
         return new AreaDaoMysql(con);
+    }
+
+    @Override
+    public IUnidadDao getUnidadDao() {
+        return new UnidadDaoMysql(con);
+    }
+
+    @Override
+    public IGrupoDao getGrupoDao() {
+        return new GrupoDaoMysql(con);
+    }
+
+    @Override
+    public IMaterialDao getMaterialDao() {
+        return new MaterialDaoMysql(con);
     }
 
 }

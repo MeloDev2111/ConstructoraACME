@@ -1,4 +1,4 @@
-package Negocio;
+package Modelo;
 
 import Apoyo.Mensajes;
 import Persistencia.FactoriaDAO.IUsuarioDao;
@@ -14,14 +14,12 @@ public class LogicaLogin implements IDBAccess{
             msg.errorMsg("ESTA CUENTA NO EXISTE!");
             return usuario;
         }
-        
-        //REVISAR SI ESTA ACTIVO(HUESPEDES DESALOJADOS)
-        
+            
         if (!verificarContraseña(usuario)) {
             msg.errorMsg("CONTRASEÑA INCORRECTA!");
             return usuario;
         }
-        
+
         if (!userBD.isActivo()) {
             msg.errorMsg("USUARIO DESHABILITADO");    
             return usuario; 
@@ -32,12 +30,7 @@ public class LogicaLogin implements IDBAccess{
     
     private boolean verificarExistencia(Usuario usuario){
         userBD = dao.buscarxNombre(usuario.getNombreCuenta());
-        
-        if (userBD == null) {
-            return false;
-        }
-        
-        return true;       
+        return userBD.getIdUsuario() != null;       
     }
     
     private boolean verificarContraseña(Usuario usuario){

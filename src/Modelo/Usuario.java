@@ -1,4 +1,4 @@
-package Negocio;
+package Modelo;
 
 public class Usuario {
     private String idUsuario;

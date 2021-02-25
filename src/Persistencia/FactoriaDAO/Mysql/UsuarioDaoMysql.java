@@ -1,12 +1,12 @@
 package Persistencia.FactoriaDAO.Mysql;
 
-import Negocio.TiposUsuario;
+import Modelo.TiposUsuario;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import Persistencia.FactoriaDAO.IUsuarioDao;
-import Negocio.Usuario;
+import Modelo.Usuario;
 
 public class UsuarioDaoMysql implements IUsuarioDao{
     private Connection conexion;
@@ -107,7 +107,7 @@ public class UsuarioDaoMysql implements IUsuarioDao{
     }
 
     @Override
-    public Usuario buscarxID(String idUsuario) {
+    public Usuario buscar(String idUsuario) {
         Usuario usuario = null;
         String sql ="SELECT * FROM Usuarios WHERE idUsuario = ?";
         try {
@@ -136,7 +136,7 @@ public class UsuarioDaoMysql implements IUsuarioDao{
 
     @Override
     public Usuario buscarxNombre(String nombreUsuario) {
-                Usuario usuario = null;
+        Usuario usuario = null;
         
         String sql ="SELECT * FROM Usuarios WHERE nombreCuenta=?";
         try {
