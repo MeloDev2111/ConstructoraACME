@@ -6,7 +6,7 @@ import java.time.LocalDate;
 public class Requerimiento {
     private String idRequerimiento;
     private String etapa;
-    private Proyecto p;
+    private Proyecto proyecto;
     private Area area;
     private EstadoRequerimiento estado;
     private LocalDate fechaAprobacion;
@@ -36,12 +36,12 @@ public class Requerimiento {
         this.etapa = etapa;
     }
 
-    public Proyecto getP() {
-        return p;
+    public Proyecto getProyecto() {
+        return proyecto;
     }
 
-    public void setP(Proyecto p) {
-        this.p = p;
+    public void setProyecto(Proyecto proyecto) {
+        this.proyecto = proyecto;
     }
     
     public Area getArea() {

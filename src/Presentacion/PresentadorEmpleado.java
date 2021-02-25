@@ -7,6 +7,7 @@ import Modelo.LogicaProyectos;
 
 /* @author MeloDev */
 public class PresentadorEmpleado {
+    
     private VEmpleado vista;
     private Empleado empleado;
     
@@ -38,6 +39,8 @@ public class PresentadorEmpleado {
         VRequerimiento vReq = new VRequerimiento();
         PresentadorRequerimientos pReq = new PresentadorRequerimientos(proyecto, vReq);
         vReq.setPresentador(pReq);
+        
+        vReq.setTitulo(proyecto.getNombreProyecto());
         vReq.iniciar();
         this.vista.cerrar();
     }

@@ -13,6 +13,7 @@ public abstract class FabricaDao {
     public abstract IUnidadDao getUnidadDao();
     public abstract IGrupoDao getGrupoDao();
     public abstract IMaterialDao getMaterialDao();
+    public abstract IPedidoDao getPedidoDao();
     
     public static FabricaDao getDAOFactory(ETiposFabricaDao tipo) {
 

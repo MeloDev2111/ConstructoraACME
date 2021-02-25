@@ -17,4 +17,9 @@ public class Mensajes {
                 titulo,JOptionPane.WARNING_MESSAGE);
     }
     
+    public void OKMsg(String msg){
+        JOptionPane.showMessageDialog(null,
+                msg,
+                "OPERACION REALIZADA",JOptionPane.INFORMATION_MESSAGE);
+    }
 }

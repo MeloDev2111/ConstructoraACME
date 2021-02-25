@@ -1,5 +1,6 @@
 package Apoyo;
 
+import Modelo.Pedido;
 import Modelo.Proyecto;
 import Modelo.Requerimiento;
 import Modelo.Suministros.Material;
@@ -35,6 +36,21 @@ public class Formateo {
         return R;
     }
     
+    public Object[][] formatoJtableReqsRespArea(ArrayList<Requerimiento> reqs){
+        Object[][] R = new Object[reqs.size()][4];
+        
+        int i=0;
+        for (Requerimiento r : reqs) {
+            R[i][0]=r.getIdRequerimiento();
+            R[i][1]=r.getProyecto().getNombreProyecto();
+            R[i][2]=r.getEtapa();
+            R[i][3]=r.getNombreEstado();
+            i++;
+        }
+       
+        return R;
+    }
+    
     public Object[][] formatoJtableMateriales(ArrayList<Material> materiales){
         Object[][] M = new Object[materiales.size()][5];
         
@@ -50,6 +66,23 @@ public class Formateo {
        
         return M;
     }
+    
+    public Object[][] formatoJtablePedidos(ArrayList<Pedido> pedidos){
+        Object[][] M = new Object[pedidos.size()][5];
+        
+        int i=0;
+        for (Pedido p : pedidos) {
+            M[i][0]=p.getIdPedido();
+            M[i][1]=p.getMaterial().getNombreMaterial();
+            M[i][2]=p.getCantidadTotal();
+            M[i][3]=p.getMaterial().getUnidad().getNombreUnidad();
+            M[i][4]=p.getObservaciones();
+            i++;
+        }
+       
+        return M;
+    }   
+    
  /*   
      public Object[][] formatoJtableMateriales(ArrayList<> materiales){
         Object[][] M = new Object[materiales.size()][4];

@@ -19,7 +19,7 @@ public class RequerimientoDaoMysql implements IRequerimientoDao{
 
     @Override
     public ArrayList<Requerimiento> listarRequerimientosxProyecto(String idProyecto) {
-        String sql ="SELECT * FROM VistaRequerimientos WHERE idProyecto = ?";
+        String sql ="SELECT * FROM Requerimientos WHERE idProyecto = ? AND estado != 'APROBADO' AND estado != 'CERRADO'";
         ArrayList<Requerimiento> lista =null;
         
         AreaDaoMysql daoArea = new AreaDaoMysql(conexion);
@@ -38,7 +38,45 @@ public class RequerimientoDaoMysql implements IRequerimientoDao{
                 
                 req.setIdRequerimiento( rs.getString("idRequerimiento") );
                 req.setEtapa(rs.getString("etapa") );
-                req.setP( daoProy.buscar( idProyecto ) );
+                req.setProyecto( daoProy.buscar( idProyecto ) );
+                req.setArea( daoArea.buscar( rs.getString("idArea") ) );
+                req.setEstado(rs.getString("estado"));
+                lista.add(req);
+            }
+            rs.close();
+            st.close();
+            
+            
+        } catch (Exception e) {
+            System.out.println("AQUI");
+            System.out.println(e.getMessage());
+        } 
+        
+        return lista;
+    }
+    
+    @Override
+    public ArrayList<Requerimiento> listarRequerimientosxArea(String idArea) {
+        String sql ="SELECT * FROM Requerimientos WHERE idArea = ? AND estado='PENDIENTE' ";
+        ArrayList<Requerimiento> lista =null;
+        
+        AreaDaoMysql daoArea = new AreaDaoMysql(conexion);
+        ProyectoDaoMysql daoProy = new ProyectoDaoMysql(conexion);
+        
+        try {
+            PreparedStatement st = this.conexion.prepareStatement(sql);
+            st.setString(1, idArea);   
+            
+            lista = new ArrayList();
+            ResultSet rs = st.executeQuery(); //ejecutar el codigo sql ya sea ddl o dml??//ITERATOR? QUE ES ESTO? 
+            
+
+            while (rs.next()) {
+                Requerimiento req = new Requerimiento();
+                
+                req.setIdRequerimiento( rs.getString("idRequerimiento") );
+                req.setEtapa(rs.getString("etapa") );
+                req.setProyecto( daoProy.buscar( idArea ) );
                 req.setArea( daoArea.buscar( rs.getString("idArea") ) );
                 req.setEstado(rs.getString("estado"));
                 lista.add(req);
@@ -57,7 +95,7 @@ public class RequerimientoDaoMysql implements IRequerimientoDao{
     
     @Override
     public Requerimiento buscar(String idRequerimiento) {
-        String sql ="SELECT * FROM Requerimiento WHERE idRequerimiento=?";
+        String sql ="SELECT * FROM Requerimientos WHERE idRequerimiento=?";
         Requerimiento req =null;
         
         AreaDaoMysql daoArea = new AreaDaoMysql(conexion);
@@ -74,7 +112,7 @@ public class RequerimientoDaoMysql implements IRequerimientoDao{
                 
                 req.setIdRequerimiento( rs.getString("idRequerimiento") );
                 req.setEtapa(rs.getString("etapa") );
-                req.setP( daoProy.buscar( rs.getString("idProyecto")  ) );
+                req.setProyecto( daoProy.buscar( rs.getString("idProyecto")  ) );
                 req.setArea( daoArea.buscar( rs.getString("idArea") ) );
                 req.setEstado(rs.getString("estado"));
             }
@@ -102,7 +140,23 @@ public class RequerimientoDaoMysql implements IRequerimientoDao{
 
     @Override
     public Requerimiento actualizar(Requerimiento obj) {
-        throw new UnsupportedOperationException("Not supported yet.");
+       
+         String sql ="update Requerimientos set idProyecto=?, etapa=?,idArea=?,estado=? where idRequerimiento=?";
+        try {
+            PreparedStatement st = this.conexion.prepareStatement(sql);
+            st.setString(1, obj.getProyecto().getIdProyecto());
+            st.setString(2, obj.getEtapa());
+            st.setString(3, obj.getArea().getIdArea());
+            st.setString(4, obj.getNombreEstado());
+            st.setString(5, obj.getIdRequerimiento()); 
+            st.executeUpdate();
+            
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } 
+        
+        return obj;
+        
     }
 
     @Override

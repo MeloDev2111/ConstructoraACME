@@ -8,6 +8,7 @@ import Persistencia.FactoriaDAO.IAreaDao;
 import Persistencia.FactoriaDAO.IEmpleadoDao;
 import Persistencia.FactoriaDAO.IGrupoDao;
 import Persistencia.FactoriaDAO.IMaterialDao;
+import Persistencia.FactoriaDAO.IPedidoDao;
 import Persistencia.FactoriaDAO.IProyectoDao;
 import Persistencia.FactoriaDAO.IRequerimientoDao;
 import Persistencia.FactoriaDAO.IUnidadDao;
@@ -54,6 +55,11 @@ public class FabricaDaoMysql extends FabricaDao{
     @Override
     public IMaterialDao getMaterialDao() {
         return new MaterialDaoMysql(con);
+    }
+
+    @Override
+    public IPedidoDao getPedidoDao() {
+        return new PedidoDaoMysql(con);
     }
 
 }

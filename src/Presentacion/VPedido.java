@@ -5,12 +5,18 @@
  */
 package Presentacion;
 
+import Apoyo.Mensajes;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Harby
  */
 public class VPedido extends javax.swing.JPanel {
-
+    private JFrame frame = new JFrame("Pedidos del Requerimiento");
+    private PresentadorPedidos presentador;
+    private Mensajes msg = new Mensajes();
     /**
      * Creates new form VPedido
      */
@@ -39,14 +45,13 @@ public class VPedido extends javax.swing.JPanel {
         btnEliminar = new javax.swing.JButton();
         PanelTabla = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        TblRequerimientos = new javax.swing.JTable();
+        TblPedidos = new javax.swing.JTable();
         btnBuscar = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         PanelPedidoDoc1 = new javax.swing.JPanel();
-        btnPedidos1 = new javax.swing.JButton();
         btnGenerardoc1 = new javax.swing.JButton();
         PanelLable = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        lblTitulo = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         panelBase = new javax.swing.JPanel();
 
@@ -99,13 +104,18 @@ public class VPedido extends javax.swing.JPanel {
                 .addComponent(btnEliminar1)
                 .addGap(18, 18, 18)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         PanelEmpleado.setBackground(new java.awt.Color(204, 204, 255));
 
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/añadir.png"))); // NOI18N
         btnGuardar.setText("Agregar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
 
         btnModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/modify.png"))); // NOI18N
         btnModificar.setText("Modificar");
@@ -119,27 +129,28 @@ public class VPedido extends javax.swing.JPanel {
             PanelEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelEmpleadoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(PanelEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnModificar, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
-                    .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGroup(PanelEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(btnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+                    .addGroup(PanelEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(btnEliminar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnModificar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         PanelEmpleadoLayout.setVerticalGroup(
             PanelEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelEmpleadoLayout.createSequentialGroup()
-                .addGap(73, 73, 73)
+                .addContainerGap()
                 .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(39, 39, 39)
                 .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(45, 45, 45)
                 .addComponent(btnEliminar)
-                .addContainerGap(105, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         PanelTabla.setBackground(new java.awt.Color(204, 204, 255));
 
-        TblRequerimientos.setModel(new javax.swing.table.DefaultTableModel(
+        TblPedidos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -152,18 +163,18 @@ public class VPedido extends javax.swing.JPanel {
                 {null, null, null, null, null}
             },
             new String [] {
-                "IdPedido", "Material", "Cantidad Total", "C. Restante", "Observaciones"
+                "IdPedido", "Material", "Cantidad Total", "Unidad", "Observaciones"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(TblRequerimientos);
+        jScrollPane1.setViewportView(TblPedidos);
 
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar.png"))); // NOI18N
         btnBuscar.setText("Buscar");
@@ -206,9 +217,6 @@ public class VPedido extends javax.swing.JPanel {
 
         PanelPedidoDoc1.setBackground(new java.awt.Color(204, 204, 255));
 
-        btnPedidos1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/pedido.png"))); // NOI18N
-        btnPedidos1.setText("Pedidos");
-
         btnGenerardoc1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/generar.png"))); // NOI18N
         btnGenerardoc1.setText("Generar documentos");
         btnGenerardoc1.addActionListener(new java.awt.event.ActionListener() {
@@ -221,30 +229,26 @@ public class VPedido extends javax.swing.JPanel {
         PanelPedidoDoc1.setLayout(PanelPedidoDoc1Layout);
         PanelPedidoDoc1Layout.setHorizontalGroup(
             PanelPedidoDoc1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelPedidoDoc1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnPedidos1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(PanelPedidoDoc1Layout.createSequentialGroup()
+                .addGap(266, 266, 266)
                 .addComponent(btnGenerardoc1)
-                .addGap(19, 19, 19))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PanelPedidoDoc1Layout.setVerticalGroup(
             PanelPedidoDoc1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelPedidoDoc1Layout.createSequentialGroup()
                 .addGap(33, 33, 33)
-                .addGroup(PanelPedidoDoc1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnPedidos1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnGenerardoc1))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addComponent(btnGenerardoc1)
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         PanelLable.setBackground(new java.awt.Color(102, 102, 255));
 
-        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("PEDIDO DE REQUERIMIENTO");
+        lblTitulo.setBackground(new java.awt.Color(255, 255, 255));
+        lblTitulo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
+        lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitulo.setText("PEDIDO DE REQUERIMIENTO:");
 
         jButton1.setText("<-");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -258,7 +262,7 @@ public class VPedido extends javax.swing.JPanel {
         PanelLableLayout.setHorizontalGroup(
             PanelLableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelLableLayout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1))
         );
@@ -267,7 +271,7 @@ public class VPedido extends javax.swing.JPanel {
             .addGroup(PanelLableLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(PanelLableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(lblTitulo)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
@@ -282,7 +286,7 @@ public class VPedido extends javax.swing.JPanel {
         );
         panelBaseLayout.setVerticalGroup(
             panelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 321, Short.MAX_VALUE)
+            .addGap(0, 240, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -290,7 +294,7 @@ public class VPedido extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(PanelLable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(PanelPedidoDoc1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(PanelTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -300,14 +304,15 @@ public class VPedido extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(PanelLable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(PanelTabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(panelBase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(PanelPedidoDoc1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(PanelLable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(PanelTabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(panelBase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(9, 9, 9)))
+                .addGap(0, 0, 0)
+                .addComponent(PanelPedidoDoc1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -320,17 +325,75 @@ public class VPedido extends javax.swing.JPanel {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        presentador.backVRequerimiento();
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnEliminar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminar1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEliminar1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        presentador.mostrarListaMateriales();
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+    public void setPresentador(PresentadorPedidos p){
+       this.presentador=p;
+    }
+    
+    public void iniciar(){
+        frame.setContentPane(this);
+        frame.setUndecorated(true);
+        frame.pack();
+        frame.setVisible(true);
+        frame.setSize(900,500);
+        frame.setLocationRelativeTo(null);
+        presentador.establecerTablaPedidos();
+    }
+    
+    public void cerrar() {
+        this.frame.dispose();
+    }
+    
+    public void configurarBtnsEmpleado(){
+        cambiarBotones(PanelEmpleado);
+    }
+    
+    public void configurarBtnsResponsableArea(){
+        
+    }
+    
+    public void setTitulo(String nombre){
+        this.lblTitulo.setText("PEDIDOS DEL REQUERIMIENTO: "+nombre);
+    }
+    
+    public void setTablaPedidos(Object[][] lista){
+        String[] cabezera = {"IdPedido", "Material", "C. Total", "Unidad", "Observaciones"};
+        this.TblPedidos.setModel(new javax.swing.table.DefaultTableModel(
+            lista,
+            cabezera
+        ));
+    }
+    
+    public String getidRequeSeleccionado(){
+        int pos = TblPedidos.getSelectedRow();
+        return TblPedidos.getValueAt(pos, 0).toString();
+    }
+    
+    public void cambiarBotones(JPanel nuevoPanel) {
+        nuevoPanel.setSize(180,240);
+        nuevoPanel.setVisible(true);
+        this.panelBase.removeAll();
+        this.panelBase.add(nuevoPanel);
+        this.panelBase.revalidate();
+        this.panelBase.repaint();
+    }
+    
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelEmpleado;
@@ -338,7 +401,7 @@ public class VPedido extends javax.swing.JPanel {
     private javax.swing.JPanel PanelPedidoDoc1;
     private javax.swing.JPanel PanelResponsableArea;
     private javax.swing.JPanel PanelTabla;
-    private javax.swing.JTable TblRequerimientos;
+    private javax.swing.JTable TblPedidos;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnEliminar1;
@@ -346,14 +409,13 @@ public class VPedido extends javax.swing.JPanel {
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnModificar1;
-    private javax.swing.JButton btnPedidos1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel lblTitulo;
     private javax.swing.JPanel panelBase;
     // End of variables declaration//GEN-END:variables
 }

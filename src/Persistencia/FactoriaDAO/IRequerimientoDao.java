@@ -5,5 +5,6 @@ import java.util.ArrayList;
 
 /*@author MelioDev*/
 public interface IRequerimientoDao extends IDaoCrud<Requerimiento>{
-     public abstract ArrayList<Requerimiento> listarRequerimientosxProyecto(String idProyecto);
+     public ArrayList<Requerimiento> listarRequerimientosxProyecto(String idProyecto);
+     public ArrayList<Requerimiento> listarRequerimientosxArea(String idArea);
 }

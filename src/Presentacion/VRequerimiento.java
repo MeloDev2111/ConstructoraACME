@@ -97,6 +97,11 @@ public class VRequerimiento extends javax.swing.JPanel {
 
         btnPedidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/pedido.png"))); // NOI18N
         btnPedidos.setText("Pedidos");
+        btnPedidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPedidosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout PanelAdmiCrudLayout = new javax.swing.GroupLayout(PanelAdmiCrud);
         PanelAdmiCrud.setLayout(PanelAdmiCrudLayout);
@@ -171,6 +176,11 @@ public class VRequerimiento extends javax.swing.JPanel {
         jLabel2.setText("Area:");
 
         jButton1.setText("SOLICITAR APROBACION");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         btnGenerardoc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/generar.png"))); // NOI18N
         btnGenerardoc.setText("Generar documentos");
@@ -255,6 +265,18 @@ public class VRequerimiento extends javax.swing.JPanel {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         presentador.backVEmpleado();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void btnPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPedidosActionPerformed
+        if (isSelected()) {
+           presentador.mostrarVPedidos();
+        }
+    }//GEN-LAST:event_btnPedidosActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if (isSelected()) {
+            presentador.solicitarAprobacion();
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
     
     public void setPresentador(PresentadorRequerimientos p){
        this.presentador=p;
@@ -289,6 +311,14 @@ public class VRequerimiento extends javax.swing.JPanel {
     public String getidRequeSeleccionado(){
         int pos = TblRequerimientos.getSelectedRow();
         return TblRequerimientos.getValueAt(pos, 0).toString();
+    }
+    
+    private boolean isSelected(){
+        if (TblRequerimientos.getSelectedRow()==-1) {
+            msg.errorMsg("DEBE SELECCIONAR UN REQUERIMIENTO");
+            return false;
+        }
+        return true;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

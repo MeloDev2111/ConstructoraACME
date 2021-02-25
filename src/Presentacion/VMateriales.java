@@ -6,6 +6,7 @@
 package Presentacion;
 
 import Apoyo.Mensajes;
+import Apoyo.Validacion;
 import javax.swing.JFrame;
 
 /**
@@ -13,9 +14,10 @@ import javax.swing.JFrame;
  * @author Harby
  */
 public class VMateriales extends javax.swing.JPanel {
-    private JFrame frame = new JFrame("Requerimientos del Proyecto");
+    private JFrame frame = new JFrame("Lista de Materiales");
     private PresentadorMateriales  presentador;
     private Mensajes msg = new Mensajes();
+    private Validacion validar = new Validacion();
     
     /**
      * Creates new form VListaMateriales
@@ -55,7 +57,7 @@ public class VMateriales extends javax.swing.JPanel {
         lblTitulo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTitulo.setText("LISTA DE MATERIALES PARA PEDIDOS");
+        lblTitulo.setText("LISTA DE MATERIALES PARA PEDIDO DEL REQUERIMIENTO: ");
 
         javax.swing.GroupLayout PanelTitleLayout = new javax.swing.GroupLayout(PanelTitle);
         PanelTitle.setLayout(PanelTitleLayout);
@@ -234,7 +236,17 @@ public class VMateriales extends javax.swing.JPanel {
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnAgregarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPedidoActionPerformed
-        presentador.agregarPedido();
+        if (isSelected()) {
+            if ("".equals(txtCantidad.getText())) {
+                msg.errorMsg("Debe Ingresar una cantidad");
+                txtCantidad.requestFocus();
+            }else{
+                if ( validar.isDouble(txtCantidad.getText() ) ) {
+                    presentador.agregarPedido();
+                }
+            }
+        }
+        
     }//GEN-LAST:event_btnAgregarPedidoActionPerformed
     public void setPresentador(PresentadorMateriales p){
        this.presentador=p;
@@ -255,7 +267,7 @@ public class VMateriales extends javax.swing.JPanel {
     }
     
     public void setTitulo(String nombre){
-        this.lblTitulo.setText("REQUERIMIENTOS DEL PROYECTO:"+nombre);
+        this.lblTitulo.setText("LISTA DE MATERIALES PARA PEDIDO DEL REQUERIMIENTO: "+nombre);
     }
     
     public void setTablaMateriales(Object[][] listaMateriales){
@@ -266,11 +278,22 @@ public class VMateriales extends javax.swing.JPanel {
         ));
     }
     
-    public String getidRequeSeleccionado(){
+    public String getidPedidoSeleccionado(){
         int pos = tblMateriales.getSelectedRow();
         return tblMateriales.getValueAt(pos, 0).toString();
     }
     
+    public double getCantidad(){
+        return Double.valueOf(txtCantidad.getText());
+    }
+    
+    private boolean isSelected(){
+        if (tblMateriales.getSelectedRow()==-1) {
+            msg.errorMsg("DEBE SELECCIONAR UN MATERIAL");
+            return false;
+        }
+        return true;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelBtn;

@@ -31,8 +31,8 @@ public class MaterialDaoMysql implements IMaterialDao{
             while (rs.next()) {
                 mat.setIdMaterial(rs.getString("idMaterial"));
                 mat.setNombreMaterial(rs.getString("nombreMaterial"));
-                mat.setGrupo( daoGrupo.buscar( rs.getString("nombreGrupo") ) );
-                mat.setUnidad( daoUnidad.buscar( rs.getString("nombreGrupo") ) );
+                mat.setGrupo( daoGrupo.buscar( rs.getString("idGrupo") ) );
+                mat.setUnidad( daoUnidad.buscar( rs.getString("idUnidad") ) );
                 mat.setTipo(rs.getString("tipo"));
             }
             

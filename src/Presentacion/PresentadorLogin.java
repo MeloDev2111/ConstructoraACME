@@ -48,7 +48,18 @@ public class PresentadorLogin {
                     this.vista.cerrar();
                     break;
                 case RESPONSABLEAREA:
-                    msg.advertenciaMsg("Mensajito!","PRONTO DISPONIBLE VISTA RESPONSABLEAREA, C;");
+                    
+                    VResponsableArea vRespArea = new VResponsableArea();
+                    Empleado empRespArea = logiEmpleados.buscarEmpleado(user);
+                    
+                    PresentadorRespArea pRespArea = new PresentadorRespArea(vRespArea, empRespArea);
+                    vRespArea.setPresentador(pRespArea);
+                    vRespArea.setTitulo(empRespArea.getNombre());
+                    
+                    vRespArea.iniciar();
+                    this.vista.cerrar();
+                    
+                    
                     break;
                 case RESPONSABLECOMPRA:
                     msg.advertenciaMsg("Mensajito!","PRONTO DISPONIBLE VISTA RESPONSABLECOMPRA, C;");
