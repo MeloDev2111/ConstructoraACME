@@ -1,6 +1,6 @@
 package Persistencia.FactoriaDAO.Mysql;
 
-import Modelo.Pedido;
+import Modelo.Compras.Pedido;
 import Modelo.Proyecto;
 import Persistencia.FactoriaDAO.IPedidoDao;
 import java.sql.Connection;
@@ -49,15 +49,14 @@ public class PedidoDaoMysql implements IPedidoDao{
     }
 
     @Override
-    public ArrayList<Pedido> listarPedidosxRequerimiento(String idRequerimiento) {
-        String sql ="SELECT * FROM Pedidos WHERE idRequerimiento=?";
+    public ArrayList<Pedido> listado() {
+        String sql ="SELECT * FROM Pedidos";
         
         ArrayList<Pedido> lista =null;
         MaterialDaoMysql daoMat = new MaterialDaoMysql(conexion);
         RequerimientoDaoMysql daoReq = new RequerimientoDaoMysql(conexion);
         try {
             PreparedStatement st = this.conexion.prepareStatement(sql);
-            st.setString(1, idRequerimiento);   
             
             lista = new ArrayList();
             ResultSet rs = st.executeQuery(); //ejecutar el codigo sql ya sea ddl o dml??//ITERATOR? QUE ES ESTO? 
@@ -83,6 +82,24 @@ public class PedidoDaoMysql implements IPedidoDao{
         
         return lista;
     }
+    
+    @Override
+    public ArrayList<Pedido> listarPedidosxRequerimiento(String idRequerimiento) {        
+        ArrayList<Pedido> lista =listado();
+        
+        ArrayList<Pedido> listaFiltrada = new ArrayList();
+            
+        for (Pedido p : lista) {
+            if (p.getRequerimiento()!=null) {
+                if ( p.getRequerimiento().getIdRequerimiento().equals(idRequerimiento) ) {
+                    listaFiltrada.add(p);
+                }
+            }
+            
+        }
+        
+        return listaFiltrada;
+    }
 
     @Override
     public Pedido registrar(Pedido obj) {
@@ -104,13 +121,44 @@ public class PedidoDaoMysql implements IPedidoDao{
     }
 
     @Override
-    public ArrayList<Pedido> listado() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
     public Pedido actualizar(Pedido obj) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        String sql =" UPDATE Pedidos SET idRequerimiento = ?,idMaterial = ?,"
+                + "cantidadTotal = ?,cantidadRestante = ?,observaciones =  ?"
+                + "WHERE idPedido = ?";
+        try {
+            PreparedStatement st = this.conexion.prepareStatement(sql);//Codigo sql
+            st.setString(1, obj.getRequerimiento().getIdRequerimiento());
+            st.setString(2, obj.getMaterial().getIdMaterial());
+            st.setDouble(3, obj.getCantidadTotal());
+            st.setDouble(4, obj.getCantidadRestante());
+            st.setString(5, obj.getObservaciones());
+            st.setString(6, obj.getIdPedido());
+            st.executeUpdate();//Ejectura codigo sql cuando este tiene parametros
+            
+        } catch (Exception e) {
+            System.out.println("error en actualizar pedidos");
+            System.out.println(e.getMessage());
+        } 
+        
+        return obj;
+    }
+    
+    @Override
+    public Pedido actualizarObservacion(Pedido obj) {
+        String sql =" UPDATE Pedidos SET observaciones =  ?"
+                + "WHERE idPedido = ?";
+        try {
+            PreparedStatement st = this.conexion.prepareStatement(sql);//Codigo sql
+            st.setString(1, obj.getObservaciones());
+            st.setString(2, obj.getIdPedido());
+            st.executeUpdate();//Ejectura codigo sql cuando este tiene parametros
+            
+        } catch (Exception e) {
+            System.out.println("error en actualizar obs pedidos");
+            System.out.println(e.getMessage());
+        } 
+        
+        return obj;
     }
 
     @Override

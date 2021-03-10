@@ -34,11 +34,11 @@ public class VPedido extends javax.swing.JPanel {
     private void initComponents() {
 
         PanelResponsableArea = new javax.swing.JPanel();
-        btnEliminar1 = new javax.swing.JButton();
+        btnObservacion = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        btnModificar1 = new javax.swing.JButton();
+        txtObservacion = new javax.swing.JTextArea();
+        btnConsultar = new javax.swing.JButton();
         PanelEmpleado = new javax.swing.JPanel();
         btnGuardar = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
@@ -52,16 +52,16 @@ public class VPedido extends javax.swing.JPanel {
         btnGenerardoc1 = new javax.swing.JButton();
         PanelLable = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnVolverEmpleado = new javax.swing.JButton();
         panelBase = new javax.swing.JPanel();
 
         PanelResponsableArea.setBackground(new java.awt.Color(204, 204, 255));
 
-        btnEliminar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/delete.png"))); // NOI18N
-        btnEliminar1.setText("Quitar Observación");
-        btnEliminar1.addActionListener(new java.awt.event.ActionListener() {
+        btnObservacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/modify.png"))); // NOI18N
+        btnObservacion.setText("Observación");
+        btnObservacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminar1ActionPerformed(evt);
+                btnObservacionActionPerformed(evt);
             }
         });
 
@@ -72,13 +72,18 @@ public class VPedido extends javax.swing.JPanel {
             }
         });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setText("Al seleccionar\nrequerimiento, se \nactiva el cuadro de\ntexto para envíar\nObservación.");
-        jScrollPane2.setViewportView(jTextArea1);
+        txtObservacion.setColumns(20);
+        txtObservacion.setRows(5);
+        txtObservacion.setText("Al seleccionar\nrequerimiento, se \nactiva el cuadro de\ntexto para envíar\nObservación.");
+        jScrollPane2.setViewportView(txtObservacion);
 
-        btnModificar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/modify.png"))); // NOI18N
-        btnModificar1.setText("Modificar");
+        btnConsultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar.png"))); // NOI18N
+        btnConsultar.setText("Consultar");
+        btnConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout PanelResponsableAreaLayout = new javax.swing.GroupLayout(PanelResponsableArea);
         PanelResponsableArea.setLayout(PanelResponsableAreaLayout);
@@ -87,21 +92,21 @@ public class VPedido extends javax.swing.JPanel {
             .addGroup(PanelResponsableAreaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(PanelResponsableAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnEliminar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnObservacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane2)
-                    .addComponent(btnModificar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnConsultar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         PanelResponsableAreaLayout.setVerticalGroup(
             PanelResponsableAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelResponsableAreaLayout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addComponent(btnModificar1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnEliminar1)
+                .addComponent(btnObservacion)
                 .addGap(18, 18, 18)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -119,9 +124,19 @@ public class VPedido extends javax.swing.JPanel {
 
         btnModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/modify.png"))); // NOI18N
         btnModificar.setText("Modificar");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/delete.png"))); // NOI18N
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout PanelEmpleadoLayout = new javax.swing.GroupLayout(PanelEmpleado);
         PanelEmpleado.setLayout(PanelEmpleadoLayout);
@@ -131,9 +146,8 @@ public class VPedido extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(PanelEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(btnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
-                    .addGroup(PanelEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(btnEliminar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnModificar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)))
+                    .addComponent(btnEliminar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnModificar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
         PanelEmpleadoLayout.setVerticalGroup(
@@ -250,10 +264,10 @@ public class VPedido extends javax.swing.JPanel {
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitulo.setText("PEDIDO DE REQUERIMIENTO:");
 
-        jButton1.setText("<-");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnVolverEmpleado.setText("<-");
+        btnVolverEmpleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnVolverEmpleadoActionPerformed(evt);
             }
         });
 
@@ -264,7 +278,7 @@ public class VPedido extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelLableLayout.createSequentialGroup()
                 .addComponent(lblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1))
+                .addComponent(btnVolverEmpleado))
         );
         PanelLableLayout.setVerticalGroup(
             PanelLableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -272,7 +286,7 @@ public class VPedido extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(PanelLableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTitulo)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnVolverEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
@@ -282,11 +296,11 @@ public class VPedido extends javax.swing.JPanel {
         panelBase.setLayout(panelBaseLayout);
         panelBaseLayout.setHorizontalGroup(
             panelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 178, Short.MAX_VALUE)
+            .addGap(0, 190, Short.MAX_VALUE)
         );
         panelBaseLayout.setVerticalGroup(
             panelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 240, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -298,7 +312,7 @@ public class VPedido extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(PanelPedidoDoc1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(PanelTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelBase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
@@ -306,13 +320,13 @@ public class VPedido extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(PanelLable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(PanelTabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(panelBase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(9, 9, 9)))
-                .addGap(0, 0, 0)
-                .addComponent(PanelPedidoDoc1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(PanelTabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(PanelPedidoDoc1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(72, 72, 72)
+                        .addComponent(panelBase, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -324,21 +338,41 @@ public class VPedido extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnVolverEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverEmpleadoActionPerformed
         presentador.backVRequerimiento();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnVolverEmpleadoActionPerformed
 
-    private void btnEliminar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnEliminar1ActionPerformed
+    private void btnObservacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObservacionActionPerformed
+        presentador.observar();
+    }//GEN-LAST:event_btnObservacionActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        presentador.backVRespArea();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        presentador.mostrarListaMateriales();
+        if (isSelected()) {
+            presentador.mostrarListaMateriales();
+        }
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
+        if (isSelected()) {
+            presentador.consultarObservaciones();
+        }
+    }//GEN-LAST:event_btnConsultarActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        if (isSelected()) {
+            presentador.modificar();
+        }
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        if (isSelected()) {
+            presentador.eliminar();
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     public void setPresentador(PresentadorPedidos p){
        this.presentador=p;
@@ -349,7 +383,7 @@ public class VPedido extends javax.swing.JPanel {
         frame.setUndecorated(true);
         frame.pack();
         frame.setVisible(true);
-        frame.setSize(900,500);
+        frame.setSize(900,550);
         frame.setLocationRelativeTo(null);
         presentador.establecerTablaPedidos();
     }
@@ -363,7 +397,8 @@ public class VPedido extends javax.swing.JPanel {
     }
     
     public void configurarBtnsResponsableArea(){
-        
+        cambiarBotones(PanelResponsableArea);
+        btnVolverEmpleado.setVisible(false);
     }
     
     public void setTitulo(String nombre){
@@ -378,13 +413,21 @@ public class VPedido extends javax.swing.JPanel {
         ));
     }
     
-    public String getidRequeSeleccionado(){
+    public String getTextoObservacion(){
+        return txtObservacion.getText();
+    }
+    
+    public void setTextoObservacion(String s){
+        txtObservacion.setText(s);
+    }
+    
+    public String getidPedidoSeleccionado(){
         int pos = TblPedidos.getSelectedRow();
         return TblPedidos.getValueAt(pos, 0).toString();
     }
     
     public void cambiarBotones(JPanel nuevoPanel) {
-        nuevoPanel.setSize(180,240);
+        nuevoPanel.setSize(200,350);
         nuevoPanel.setVisible(true);
         this.panelBase.removeAll();
         this.panelBase.add(nuevoPanel);
@@ -392,7 +435,13 @@ public class VPedido extends javax.swing.JPanel {
         this.panelBase.repaint();
     }
     
-    
+    private boolean isSelected(){
+        if (TblPedidos.getSelectedRow()==-1) {
+            msg.errorMsg("DEBE SELECCIONAR UN PEDIDO");
+            return false;
+        }
+        return true;
+    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -403,19 +452,19 @@ public class VPedido extends javax.swing.JPanel {
     private javax.swing.JPanel PanelTabla;
     private javax.swing.JTable TblPedidos;
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnConsultar;
     private javax.swing.JButton btnEliminar;
-    private javax.swing.JButton btnEliminar1;
     private javax.swing.JButton btnGenerardoc1;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnModificar;
-    private javax.swing.JButton btnModificar1;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnObservacion;
+    private javax.swing.JButton btnVolverEmpleado;
     private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JPanel panelBase;
+    private javax.swing.JTextArea txtObservacion;
     // End of variables declaration//GEN-END:variables
 }

@@ -16,10 +16,10 @@ public class RequerimientoDaoMysql implements IRequerimientoDao{
     public RequerimientoDaoMysql(Connection con) {
         conexion=con;
     }
-
+    
     @Override
-    public ArrayList<Requerimiento> listarRequerimientosxProyecto(String idProyecto) {
-        String sql ="SELECT * FROM Requerimientos WHERE idProyecto = ? AND estado != 'APROBADO' AND estado != 'CERRADO'";
+    public ArrayList<Requerimiento> listado() {
+        String sql ="SELECT * FROM Requerimientos";
         ArrayList<Requerimiento> lista =null;
         
         AreaDaoMysql daoArea = new AreaDaoMysql(conexion);
@@ -27,7 +27,6 @@ public class RequerimientoDaoMysql implements IRequerimientoDao{
         
         try {
             PreparedStatement st = this.conexion.prepareStatement(sql);
-            st.setString(1, idProyecto);   
             
             lista = new ArrayList();
             ResultSet rs = st.executeQuery(); //ejecutar el codigo sql ya sea ddl o dml??//ITERATOR? QUE ES ESTO? 
@@ -38,7 +37,7 @@ public class RequerimientoDaoMysql implements IRequerimientoDao{
                 
                 req.setIdRequerimiento( rs.getString("idRequerimiento") );
                 req.setEtapa(rs.getString("etapa") );
-                req.setProyecto( daoProy.buscar( idProyecto ) );
+                req.setProyecto( daoProy.buscar( rs.getString("idProyecto") ) );
                 req.setArea( daoArea.buscar( rs.getString("idArea") ) );
                 req.setEstado(rs.getString("estado"));
                 lista.add(req);
@@ -54,43 +53,45 @@ public class RequerimientoDaoMysql implements IRequerimientoDao{
         
         return lista;
     }
+
+    @Override
+    public ArrayList<Requerimiento> listarRequerimientosxProyecto(String idProyecto) {
+        
+        ArrayList<Requerimiento> lista =listado();
+        
+        ArrayList<Requerimiento> listaFiltrada = new ArrayList();
+            
+        for (Requerimiento r : lista) {
+            String estado = r.getNombreEstado();
+            if (r.getProyecto()!=null) {
+                if ( r.getProyecto().getIdProyecto().equals(idProyecto) ) {
+                    listaFiltrada.add(r);
+                }
+            }
+            
+        }
+        
+        return listaFiltrada;
+    }
     
     @Override
     public ArrayList<Requerimiento> listarRequerimientosxArea(String idArea) {
-        String sql ="SELECT * FROM Requerimientos WHERE idArea = ? AND estado='PENDIENTE' ";
-        ArrayList<Requerimiento> lista =null;
         
-        AreaDaoMysql daoArea = new AreaDaoMysql(conexion);
-        ProyectoDaoMysql daoProy = new ProyectoDaoMysql(conexion);
+        ArrayList<Requerimiento> lista =listado();
         
-        try {
-            PreparedStatement st = this.conexion.prepareStatement(sql);
-            st.setString(1, idArea);   
+        ArrayList<Requerimiento> listaFiltrada = new ArrayList();
             
-            lista = new ArrayList();
-            ResultSet rs = st.executeQuery(); //ejecutar el codigo sql ya sea ddl o dml??//ITERATOR? QUE ES ESTO? 
-            
-
-            while (rs.next()) {
-                Requerimiento req = new Requerimiento();
-                
-                req.setIdRequerimiento( rs.getString("idRequerimiento") );
-                req.setEtapa(rs.getString("etapa") );
-                req.setProyecto( daoProy.buscar( idArea ) );
-                req.setArea( daoArea.buscar( rs.getString("idArea") ) );
-                req.setEstado(rs.getString("estado"));
-                lista.add(req);
+        for (Requerimiento r : lista) {
+            String estado = r.getNombreEstado();
+            if (r.getArea()!=null) {
+                if ( r.getArea().getIdArea().equals(idArea) ) {
+                    listaFiltrada.add(r);
+                }
             }
-            rs.close();
-            st.close();
             
-            
-        } catch (Exception e) {
-            System.out.println("AQUI");
-            System.out.println(e.getMessage());
-        } 
+        }
         
-        return lista;
+        return listaFiltrada;
     }
     
     @Override
@@ -130,11 +131,6 @@ public class RequerimientoDaoMysql implements IRequerimientoDao{
     
     @Override
     public Requerimiento registrar(Requerimiento obj) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public ArrayList<Requerimiento> listado() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

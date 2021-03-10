@@ -231,11 +231,15 @@ public class VResponsableArea extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtaprobarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtaprobarActionPerformed
-        // TODO add your handling code here:
+        if (isSelected()) {
+            presentador.aprobarRequerimiento();
+        }
     }//GEN-LAST:event_txtaprobarActionPerformed
 
     private void txtobservarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtobservarActionPerformed
-        // TODO add your handling code here:
+        if (isSelected()) {
+            presentador.observarRequerimiento();
+        }
     }//GEN-LAST:event_txtobservarActionPerformed
 
     private void btncerrarsesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncerrarsesionActionPerformed
@@ -243,7 +247,7 @@ public class VResponsableArea extends javax.swing.JPanel {
     }//GEN-LAST:event_btncerrarsesionActionPerformed
 
     private void txtdetallesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdetallesActionPerformed
-        // TODO add your handling code here:
+        presentador.mostrarVPedido();
     }//GEN-LAST:event_txtdetallesActionPerformed
 
     

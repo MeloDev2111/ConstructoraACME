@@ -1,5 +1,6 @@
 package Modelo;
 
+import Modelo.Login.Usuario;
 import Apoyo.Mensajes;
 import Persistencia.FactoriaDAO.IEmpleadoDao;
 

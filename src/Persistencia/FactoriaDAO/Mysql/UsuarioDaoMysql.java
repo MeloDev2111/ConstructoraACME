@@ -1,12 +1,12 @@
 package Persistencia.FactoriaDAO.Mysql;
 
-import Modelo.TiposUsuario;
+import Modelo.Login.TiposUsuario;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import Persistencia.FactoriaDAO.IUsuarioDao;
-import Modelo.Usuario;
+import Modelo.Login.Usuario;
 
 public class UsuarioDaoMysql implements IUsuarioDao{
     private Connection conexion;

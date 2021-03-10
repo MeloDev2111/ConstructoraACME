@@ -1,5 +1,7 @@
-package Modelo;
+package Modelo.Compras;
 
+import Modelo.IDBAccess;
+import Modelo.Requerimiento;
 import Persistencia.FactoriaDAO.IPedidoDao;
 import java.util.ArrayList;
 
@@ -18,6 +20,10 @@ public class LogicaPedidos implements IDBAccess{
 
     public void guardar(Pedido pedido) {
         dao.registrar(pedido);
+    }
+
+    public void actualizarObservacion(Pedido pedido) {
+        dao.actualizarObservacion(pedido);
     }
 
 }

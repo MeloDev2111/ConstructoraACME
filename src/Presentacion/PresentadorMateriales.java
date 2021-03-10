@@ -2,8 +2,8 @@ package Presentacion;
 
 import Apoyo.Formateo;
 import Apoyo.Mensajes;
-import Modelo.LogicaPedidos;
-import Modelo.Pedido;
+import Modelo.Compras.LogicaPedidos;
+import Modelo.Compras.Pedido;
 import Modelo.Requerimiento;
 import Modelo.Suministros.LogicaMaterial;
 import Modelo.Suministros.Material;

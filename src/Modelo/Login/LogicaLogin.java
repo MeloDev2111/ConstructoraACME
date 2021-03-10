@@ -1,6 +1,7 @@
-package Modelo;
+package Modelo.Login;
 
 import Apoyo.Mensajes;
+import Modelo.IDBAccess;
 import Persistencia.FactoriaDAO.IUsuarioDao;
 
 public class LogicaLogin implements IDBAccess{

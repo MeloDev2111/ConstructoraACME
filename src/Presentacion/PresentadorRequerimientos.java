@@ -24,7 +24,7 @@ public class PresentadorRequerimientos {
 
     public void establecerTablaRequerimientos() {
         vista.setTablaRequerimientos(
-                format.formatoJtableReqs( logica.cargarRequerimientosProyecto(mProyecto) )
+                format.formatoJtableReqs( logica.cargarRequerimientosProyectoEmpleado(mProyecto) )
         );
     }
 
@@ -62,8 +62,13 @@ public class PresentadorRequerimientos {
     }
 
     public void solicitarAprobacion() {
-        logica.enviarParaAprobacion( logica.buscar( vista.getidRequeSeleccionado() ) );
-        establecerTablaRequerimientos();
+        Requerimiento req = logica.buscar(vista.getidRequeSeleccionado());
+        if (req!=null) {
+            if (logica.enviarParaAprobacion(req)) {
+               establecerTablaRequerimientos();
+            }
+        }
+        
     }
     
 }

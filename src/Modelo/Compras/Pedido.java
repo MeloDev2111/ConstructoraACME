@@ -1,5 +1,6 @@
-package Modelo;
+package Modelo.Compras;
 
+import Modelo.Requerimiento;
 import Modelo.Suministros.Material;
 
 /* @author MeloDev */

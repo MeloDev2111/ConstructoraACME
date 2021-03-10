@@ -33,7 +33,12 @@ public class VEmpleado extends javax.swing.JPanel {
         panelBtnsEmpleado = new javax.swing.JPanel();
         btnRequerimientos = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(204, 204, 255));
+
+        panelTitulo.setBackground(new java.awt.Color(102, 102, 255));
+
         txtTitulo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        txtTitulo.setForeground(new java.awt.Color(255, 255, 255));
         txtTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txtTitulo.setText("PROYECTO DEL EMPLEADO : HARBY ROMERO LOLI");
 
@@ -62,6 +67,8 @@ public class VEmpleado extends javax.swing.JPanel {
                     .addComponent(btnCerrarSesion))
                 .addGap(32, 32, 32))
         );
+
+        panelTable.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setText("Nombre:");
 
@@ -118,6 +125,8 @@ public class VEmpleado extends javax.swing.JPanel {
                 .addContainerGap(30, Short.MAX_VALUE))
         );
 
+        panelBtnsEmpleado.setBackground(new java.awt.Color(204, 204, 255));
+
         btnRequerimientos.setText("Requerimientos");
         btnRequerimientos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,16 +139,16 @@ public class VEmpleado extends javax.swing.JPanel {
         panelBtnsEmpleadoLayout.setHorizontalGroup(
             panelBtnsEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBtnsEmpleadoLayout.createSequentialGroup()
-                .addContainerGap(29, Short.MAX_VALUE)
+                .addContainerGap(28, Short.MAX_VALUE)
                 .addComponent(btnRequerimientos, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addGap(21, 21, 21))
         );
         panelBtnsEmpleadoLayout.setVerticalGroup(
             panelBtnsEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBtnsEmpleadoLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnRequerimientos, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
+                .addGap(90, 90, 90))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

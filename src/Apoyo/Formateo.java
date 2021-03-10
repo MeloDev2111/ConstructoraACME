@@ -1,6 +1,6 @@
 package Apoyo;
 
-import Modelo.Pedido;
+import Modelo.Compras.Pedido;
 import Modelo.Proyecto;
 import Modelo.Requerimiento;
 import Modelo.Suministros.Material;

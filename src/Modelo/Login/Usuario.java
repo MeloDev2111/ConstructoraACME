@@ -1,4 +1,4 @@
-package Modelo;
+package Modelo.Login;
 
 public class Usuario {
     private String idUsuario;

@@ -3,8 +3,8 @@ package Presentacion;
 import Apoyo.Mensajes;
 import Modelo.Empleado;
 import Modelo.LogicaEmpleados;
-import Modelo.LogicaLogin;
-import Modelo.Usuario;
+import Modelo.Login.LogicaLogin;
+import Modelo.Login.Usuario;
 
 public class PresentadorLogin {
     private Usuario user;
