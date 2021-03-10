@@ -144,8 +144,6 @@ public class Validacion {
         return true;
     }
     
-    
-    //VEMOS SI SE QUEDA
     public boolean isDouble(String cadena){
         double d;
         

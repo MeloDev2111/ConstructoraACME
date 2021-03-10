@@ -51,7 +51,7 @@ public class PresentadorOrdenCompra {
     public void aprobar(){
         OrdenCompra ord = logica.buscar(vista.getidSeleccionado());
         if (ord!=null) {
-            if (logica.aprobar(orden)) {
+            if (logica.aprobar(ord)) {
                 establecerTablaOrdenes();
             }
         }
@@ -60,7 +60,7 @@ public class PresentadorOrdenCompra {
     public void anular(){
         OrdenCompra ord = logica.buscar(vista.getidSeleccionado());
         if (ord!=null) {
-            if (logica.anular(orden)) {
+            if (logica.anular(ord)) {
                 establecerTablaOrdenes();
             }
         }

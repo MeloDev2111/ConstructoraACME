@@ -39,6 +39,7 @@ public class LogicaOrdenCompra implements IDBAccess {
             ord.setEstado(EstadoOrden.APROBADO);
             dao.actualizar(ord);
             msg.OKMsg("Orden de Compra Aprobado");
+            verificarPedidosCerrados(ord);
             return true;
         }else{
             msg.errorMsg("ESTADO NO PERMITIDO PARA SOLICITAR APROBACION : "
@@ -62,8 +63,8 @@ public class LogicaOrdenCompra implements IDBAccess {
         }
     }
     
-    private void restablecerPedidos(OrdenCompra ord) {
-        
+    
+    private void verificarPedidosCerrados(OrdenCompra ord) {
         for (DetalleOrden detalle : logiDetalle.cargarDetallesOrden(ord)) {
             Pedido p = detalle.getPedido();
             double valorActual = p.getCantidadRestante();
@@ -71,6 +72,17 @@ public class LogicaOrdenCompra implements IDBAccess {
             p.setCantidadRestante(valorActual + valorDetalle);
             logiPedido.actualizar(p);
         }
+    }
+        
+    private void restablecerPedidos(OrdenCompra ord) {
+        //por trabajar
+//        for (DetalleOrden detalle : logiDetalle.cargarDetallesOrden(ord)) {
+//            Pedido p = detalle.getPedido();
+//            double valorActual = p.getCantidadRestante();
+//            double valorDetalle = detalle.getCantidadCompra();
+//            p.setCantidadRestante(valorActual + valorDetalle);
+//            logiPedido.actualizar(p);
+//        }
         
     }
     
@@ -90,4 +102,6 @@ public class LogicaOrdenCompra implements IDBAccess {
     private boolean isPermitido(EstadoOrden[] permitidos, EstadoOrden o){
         return  Arrays.asList(permitidos).contains(o); 
     }
+
+
 }

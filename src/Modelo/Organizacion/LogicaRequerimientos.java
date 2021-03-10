@@ -19,6 +19,7 @@ public class LogicaRequerimientos implements IDBAccess{
     private Mensajes msg = new Mensajes();
     
     private LogicaArea logiArea = new LogicaArea();
+    
     public ArrayList<Requerimiento> cargarRequerimientosProyectoEmpleado (Proyecto p){
         List<Requerimiento> lista = dao.listarRequerimientosxProyecto(p.getIdProyecto());
         System.out.println("llegue a los filter");    
@@ -61,6 +62,19 @@ public class LogicaRequerimientos implements IDBAccess{
     public Requerimiento buscar(String idRequeriSeleccionado){
         return dao.buscar(idRequeriSeleccionado);
     }
+    
+    public void guardar(Requerimiento req){
+        dao.registrar(req);
+    }
+    
+    public void actualizar(Requerimiento req){
+        dao.actualizar(req);
+    }
+    
+    public void eliminar(Requerimiento req){
+        dao.eliminar(req);
+    }
+    
 
     public boolean enviarParaAprobacion(Requerimiento req) {
         if (isEnviablexEmpleado(req)) {

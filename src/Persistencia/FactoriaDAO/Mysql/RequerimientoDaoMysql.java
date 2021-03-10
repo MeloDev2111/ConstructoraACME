@@ -131,13 +131,28 @@ public class RequerimientoDaoMysql implements IRequerimientoDao{
     
     @Override
     public Requerimiento registrar(Requerimiento obj) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        String sql ="insert into Requerimientos (idProyecto,etapa,idArea,estado) values "
+                + "(?,?,?,?) ";
+
+        try {
+            PreparedStatement st = this.conexion.prepareStatement(sql);
+            st.setString(1, obj.getProyecto().getIdProyecto());
+            st.setString(2, obj.getEtapa());
+            st.setString(3, obj.getArea().getIdArea());
+            st.setString(4, obj.getNombreEstado());
+            st.executeUpdate();
+            
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } 
+        
+        return obj;
     }
 
     @Override
     public Requerimiento actualizar(Requerimiento obj) {
        
-         String sql ="update Requerimientos set idProyecto=?, etapa=?,idArea=?,estado=? where idRequerimiento=?";
+        String sql ="update Requerimientos set idProyecto=?, etapa=?,idArea=?,estado=? where idRequerimiento=?";
         try {
             PreparedStatement st = this.conexion.prepareStatement(sql);
             st.setString(1, obj.getProyecto().getIdProyecto());

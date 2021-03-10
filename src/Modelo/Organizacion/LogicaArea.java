@@ -1,18 +1,22 @@
 package Modelo.Organizacion;
 
 import Modelo.IDBAccess;
-import Modelo.IDBAccess;
 import Persistencia.FactoriaDAO.IAreaDao;
+import java.util.ArrayList;
 
 /* @author MeloDev */
 public class LogicaArea implements IDBAccess{
     IAreaDao dao = fabrica.getAreaDao();
     
-    public Area buscarArea(Area a){
-        return dao.buscar(a.getIdArea());
+    public Area buscarArea(String id){
+        return dao.buscar(id);
     }
     public Area buscarAreaDeEmpleado(Empleado e){
         return dao.buscarxEmpleado(e);
+    }
+    
+    public ArrayList<Area> cargarListaAreas(){
+        return dao.listado();
     }
     
     public void guardar(Area obj){

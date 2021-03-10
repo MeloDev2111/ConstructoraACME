@@ -5,6 +5,7 @@ import Modelo.Compras.DetalleOrden;
 import Modelo.Compras.OrdenCompra;
 import Modelo.Compras.Pedido;
 import Modelo.Compras.Proveedor;
+import Modelo.Organizacion.Area;
 import Modelo.Organizacion.Proyecto;
 import Modelo.Organizacion.Requerimiento;
 import Modelo.Suministros.Material;
@@ -153,6 +154,19 @@ public class Formateo {
         return M;
     }
     
+    public String[] formatoJtableAreas(ArrayList<Area> areas) {
+        String[] lista = new String[areas.size()];
+        int i=0;
+        for (Area a : areas) {
+            lista[i]=a.getIdArea()+"-"+a.getNombreArea();
+            i++;
+        }
+        return lista;
+    
+    }
+    
+    
+    
  /*   
      public Object[][] formatoJtableMateriales(ArrayList<> materiales){
         Object[][] M = new Object[materiales.size()][4];
@@ -169,4 +183,5 @@ public class Formateo {
         return M;
     }   
     */
+
 }

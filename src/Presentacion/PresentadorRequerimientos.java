@@ -70,5 +70,34 @@ public class PresentadorRequerimientos {
         }
         
     }
+
+    public void mostrarVAgregarRequerimiento() {
+        VAgregarEditarRequerimiento vAddReq = new VAgregarEditarRequerimiento();
+        PAgregarEditarRequerimiento pAddReq = new PAgregarEditarRequerimiento(vAddReq, mProyecto);
+        vAddReq.setPresentador(pAddReq);
+        vAddReq.deshabilitarBotones();
+        vAddReq.habilitarBtnsEmpleadoAgregar();
+        pAddReq.cargarListadoAreas();
+        
+        vAddReq.iniciar();
+        //terminando el registro
+        establecerTablaRequerimientos();
+    }
+    
+    public void mostrarVModificarRequerimiento() {
+        Requerimiento req = logica.buscar(vista.getidRequeSeleccionado());
+        VAgregarEditarRequerimiento vAddHab = new VAgregarEditarRequerimiento();
+        PAgregarEditarRequerimiento pAddHab = 
+                new PAgregarEditarRequerimiento(vAddHab,req);
+        vAddHab.setPresentador(pAddHab);
+        vAddHab.deshabilitarBotones();
+        vAddHab.habilitarBtnsEmpleadoModificar();
+        pAddHab.cargarListadoAreas();
+        
+        pAddHab.cargarDatos();
+        vAddHab.iniciar();
+        //terminando el registro
+        establecerTablaRequerimientos();
+    }
     
 }
