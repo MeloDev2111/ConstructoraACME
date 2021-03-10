@@ -14,6 +14,10 @@ public abstract class FabricaDao {
     public abstract IGrupoDao getGrupoDao();
     public abstract IMaterialDao getMaterialDao();
     public abstract IPedidoDao getPedidoDao();
+    public abstract ICentroCostoDao getCentroCostoDao();
+    public abstract IProveedorDao getProveedorDao();
+    public abstract IOrdenCompraDao getOrdenCompraDao();
+    public abstract IDetalleOrdenDao getDetalleOrdenDao();
     
     public static FabricaDao getDAOFactory(ETiposFabricaDao tipo) {
 

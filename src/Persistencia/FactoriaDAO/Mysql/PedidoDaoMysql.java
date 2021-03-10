@@ -1,7 +1,7 @@
 package Persistencia.FactoriaDAO.Mysql;
 
 import Modelo.Compras.Pedido;
-import Modelo.Proyecto;
+import Modelo.Organizacion.Proyecto;
 import Persistencia.FactoriaDAO.IPedidoDao;
 import java.sql.Connection;
 import java.util.ArrayList;

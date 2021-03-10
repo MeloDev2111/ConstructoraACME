@@ -1,7 +1,7 @@
 package Persistencia.FactoriaDAO;
 
 
-import Modelo.Proyecto;
+import Modelo.Organizacion.Proyecto;
 import java.util.ArrayList;
 
 /*@author MelioDev*/

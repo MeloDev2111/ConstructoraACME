@@ -1,6 +1,13 @@
-package Modelo;
+package Modelo.Organizacion;
 
+import Modelo.Organizacion.Area;
+import Modelo.Organizacion.LogicaArea;
+import Modelo.Organizacion.Proyecto;
+import Modelo.Organizacion.Empleado;
 import Apoyo.Mensajes;
+import Modelo.Compras.LogicaPedidos;
+import Modelo.Compras.Pedido;
+import Modelo.IDBAccess;
 import Persistencia.FactoriaDAO.IRequerimientoDao;
 import java.util.List;
 import java.util.ArrayList;
@@ -14,7 +21,7 @@ public class LogicaRequerimientos implements IDBAccess{
     private LogicaArea logiArea = new LogicaArea();
     public ArrayList<Requerimiento> cargarRequerimientosProyectoEmpleado (Proyecto p){
         List<Requerimiento> lista = dao.listarRequerimientosxProyecto(p.getIdProyecto());
-            
+        System.out.println("llegue a los filter");    
         List<Requerimiento> listaFiltrada = lista
         .stream()
         .filter(x -> x.getEstado() == EstadoRequerimiento.CREADO 
@@ -24,12 +31,13 @@ public class LogicaRequerimientos implements IDBAccess{
         if (listaFiltrada==null || listaFiltrada.isEmpty()) {
             msg.advertenciaMsg("OJO", "no tiene requerimiento por revisar");
         }
-  
+        System.out.println("sali a los filter");
         return (ArrayList<Requerimiento>) listaFiltrada;
     }
     
     public ArrayList<Requerimiento> cargarRequerimientosResponsableArea (Empleado emp){
         Area a = logiArea.buscarAreaDeEmpleado(emp);
+        System.out.println("llegue a los filter");
         if (a!=null) {
             List<Requerimiento> lista = dao.listarRequerimientosxArea(a.getIdArea());
             
@@ -46,7 +54,7 @@ public class LogicaRequerimientos implements IDBAccess{
             
             return (ArrayList<Requerimiento>) listaFiltrada;
         }
-        
+        System.out.println("sali a los filter");
         return null;
     }
     
@@ -94,8 +102,43 @@ public class LogicaRequerimientos implements IDBAccess{
             return false;
         }
         
-    } 
+    }
     
+    public boolean cerrar(Requerimiento req){
+        if (isCerrable(req)) {
+            req.setEstado(EstadoRequerimiento.CERRADO);
+            dao.actualizar(req);
+            msg.OKMsg("Requerimiento "+req.getIdRequerimiento()+" cerrado");
+            return true;
+        }
+        return false;
+    }
+    
+    
+    public boolean isCerrable(Requerimiento req){
+        EstadoRequerimiento[] permitidos = {EstadoRequerimiento.OBSERVADO, EstadoRequerimiento.CREADO};
+        
+        boolean flag = isPermitido(permitidos, req.getEstado());
+        
+        if (flag) {
+            LogicaPedidos logi = new LogicaPedidos();
+            for (Pedido p : logi.cargarPedidos(req)) {
+                flag = flag && p.getCantidadRestante()==0 ;
+            }
+            
+            if (!flag) {
+                msg.errorMsg("PEDIDOS NO ATENDIDOS COMPLETAMENTE");
+            }
+            
+            return flag;
+        }
+        
+        
+        msg.errorMsg("ESTADO NO PERMITIDO PARA SOLICITAR APROBACION : "
+                    +req.getNombreEstado());    
+        
+        return false;
+    }
     
     public boolean isEnviablexEmpleado(Requerimiento req){
         EstadoRequerimiento[] permitidos = {EstadoRequerimiento.OBSERVADO, EstadoRequerimiento.CREADO};

@@ -1,8 +1,7 @@
 package Persistencia.FactoriaDAO.Mysql;
 
-import Modelo.Area;
-import Modelo.Empleado;
-import Modelo.Proyecto;
+import Modelo.Organizacion.Area;
+import Modelo.Organizacion.Empleado;
 import Persistencia.FactoriaDAO.IAreaDao;
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -16,73 +15,76 @@ public class AreaDaoMysql implements IAreaDao{
         conexion=con;
     }
 
-    @Override
-    public Area buscar(String idArea) {
-        String sql ="SELECT * FROM Areas WHERE idArea=?";
-        Area area =null;
+        @Override
+    public ArrayList<Area> listado() {
+        String sql ="SELECT * FROM Areas";
+        ArrayList<Area> lista =null;
         
         EmpleadoDaoMysql daoEmp = new EmpleadoDaoMysql(conexion);
         
         try {
             PreparedStatement st = this.conexion.prepareStatement(sql);
-            st.setString(1, idArea);   
             
+            lista = new ArrayList();
             ResultSet rs = st.executeQuery(); //ejecutar el codigo sql ya sea ddl o dml??//ITERATOR? QUE ES ESTO? 
             
-            area = new Area();
+            
             while (rs.next()) {
+                Area area = new Area();
                 area.setIdArea( rs.getString("idArea") );
                 area.setNombreArea( rs.getString("NombreArea") );
                 area.setPrefijo( rs.getString("prefijo") );
+                area.setEmpleadoResp( daoEmp.buscar( rs.getString("idEmpleadoResponsable") ) );
+                lista.add(area);
             }
             
             rs.close();
             st.close();
-            
-            
         } catch (Exception e) {
             System.out.println(e.getMessage());
         } 
+        
+        return lista;
+    }
+
+    @Override
+    public Area buscar(String idArea) {
+        ArrayList<Area> lista =listado();
+        
+        Area area = null;
+            
+        for (Area p : lista) {
+            if ( p.getIdArea().equals(idArea) ) {
+                area = p;
+                return area;
+            }
+        }
         
         return area;
     }
     
+    
     @Override
     public Area buscarxEmpleado(Empleado emp) {
-        String sql ="SELECT * FROM Areas WHERE idEmpleadoResponsable=?";
-        Area area =null;
+        ArrayList<Area> lista =listado();
         
-        EmpleadoDaoMysql daoEmp = new EmpleadoDaoMysql(conexion);
-        
-        try {
-            PreparedStatement st = this.conexion.prepareStatement(sql);
-            st.setString(1, emp.getIdEmpleado());   
+        Area ar = null;
             
-            ResultSet rs = st.executeQuery(); //ejecutar el codigo sql ya sea ddl o dml??//ITERATOR? QUE ES ESTO? 
+        for (Area a : lista) {
             
-            area = new Area();
-            while (rs.next()) {
-                area.setIdArea( rs.getString("idArea") );
-                area.setNombreArea( rs.getString("NombreArea") );
-                area.setPrefijo( rs.getString("prefijo") );
+            if (a.getEmpleadoResp()!=null) {
+                if ( a.getEmpleadoResp().getIdEmpleado().equals(emp.getIdEmpleado()) ) {
+                    return a;
+                }
             }
             
-            rs.close();
-            st.close();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        } 
+        }
         
-        return area;
+        return ar;
     }
     
     @Override
     public Area registrar(Area obj) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public ArrayList<Area> listado() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

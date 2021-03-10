@@ -1,6 +1,6 @@
 package Persistencia.FactoriaDAO;
 
-import Modelo.Requerimiento;
+import Modelo.Organizacion.Requerimiento;
 import java.util.ArrayList;
 
 /*@author MelioDev*/

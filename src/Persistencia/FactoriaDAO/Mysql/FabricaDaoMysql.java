@@ -5,17 +5,21 @@ import Persistencia.ConexionTipo;
 import Persistencia.FabricaConexiones;
 import Persistencia.FactoriaDAO.FabricaDao;
 import Persistencia.FactoriaDAO.IAreaDao;
+import Persistencia.FactoriaDAO.ICentroCostoDao;
+import Persistencia.FactoriaDAO.IDetalleOrdenDao;
 import Persistencia.FactoriaDAO.IEmpleadoDao;
 import Persistencia.FactoriaDAO.IGrupoDao;
 import Persistencia.FactoriaDAO.IMaterialDao;
+import Persistencia.FactoriaDAO.IOrdenCompraDao;
 import Persistencia.FactoriaDAO.IPedidoDao;
+import Persistencia.FactoriaDAO.IProveedorDao;
 import Persistencia.FactoriaDAO.IProyectoDao;
 import Persistencia.FactoriaDAO.IRequerimientoDao;
 import Persistencia.FactoriaDAO.IUnidadDao;
 import Persistencia.FactoriaDAO.IUsuarioDao;
 
 public class FabricaDaoMysql extends FabricaDao{
-    private Connection con = FabricaConexiones.getConnection(ConexionTipo.CLEVERCLOUD);
+    private Connection con = FabricaConexiones.getConnection(ConexionTipo.LOCALHOST);
 
     @Override
     public IUsuarioDao getUsuarioDao() {
@@ -60,6 +64,26 @@ public class FabricaDaoMysql extends FabricaDao{
     @Override
     public IPedidoDao getPedidoDao() {
         return new PedidoDaoMysql(con);
+    }
+
+    @Override
+    public ICentroCostoDao getCentroCostoDao() {
+        return new CentroCostoDaoMysql(con);
+    }
+
+    @Override
+    public IProveedorDao getProveedorDao() {
+        return new ProveedorDaoMysql(con);
+    }
+
+    @Override
+    public IOrdenCompraDao getOrdenCompraDao() {
+        return new OrdenCompraDaoMysql(con);
+    }
+
+    @Override
+    public IDetalleOrdenDao getDetalleOrdenDao() {
+        return new DetalleOrdenDaoMysql(con);
     }
 
 }

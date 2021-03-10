@@ -33,7 +33,7 @@ public class VEmpleado extends javax.swing.JPanel {
         panelBtnsEmpleado = new javax.swing.JPanel();
         btnRequerimientos = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(204, 204, 255));
+        setBackground(new java.awt.Color(204, 255, 204));
 
         panelTitulo.setBackground(new java.awt.Color(102, 102, 255));
 
@@ -54,9 +54,10 @@ public class VEmpleado extends javax.swing.JPanel {
         panelTituloLayout.setHorizontalGroup(
             panelTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelTituloLayout.createSequentialGroup()
-                .addComponent(txtTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txtTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 689, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnCerrarSesion))
+                .addComponent(btnCerrarSesion)
+                .addContainerGap())
         );
         panelTituloLayout.setVerticalGroup(
             panelTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,7 +126,7 @@ public class VEmpleado extends javax.swing.JPanel {
                 .addContainerGap(30, Short.MAX_VALUE))
         );
 
-        panelBtnsEmpleado.setBackground(new java.awt.Color(204, 204, 255));
+        panelBtnsEmpleado.setBackground(new java.awt.Color(204, 255, 204));
 
         btnRequerimientos.setText("Requerimientos");
         btnRequerimientos.addActionListener(new java.awt.event.ActionListener() {
@@ -139,7 +140,7 @@ public class VEmpleado extends javax.swing.JPanel {
         panelBtnsEmpleadoLayout.setHorizontalGroup(
             panelBtnsEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBtnsEmpleadoLayout.createSequentialGroup()
-                .addContainerGap(28, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnRequerimientos, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
         );
@@ -148,7 +149,7 @@ public class VEmpleado extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBtnsEmpleadoLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnRequerimientos, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(90, 90, 90))
+                .addGap(104, 104, 104))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

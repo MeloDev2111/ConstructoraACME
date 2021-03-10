@@ -1,9 +1,9 @@
 package Presentacion;
 
 import Apoyo.Formateo;
-import Modelo.Empleado;
-import Modelo.Proyecto;
-import Modelo.LogicaProyectos;
+import Modelo.Organizacion.Empleado;
+import Modelo.Organizacion.Proyecto;
+import Modelo.Organizacion.LogicaProyectos;
 
 /* @author MeloDev */
 public class PresentadorEmpleado {

@@ -1,11 +1,12 @@
-package Modelo;
+package Modelo.Organizacion;
 
 /* @author MeloDev */
 public class Area {
     private String idArea;
     private String prefijo;
     private String nombreArea;
-
+    private Empleado empleadoResp;
+    
     public String getIdArea() {
         return idArea;
     }
@@ -29,6 +30,15 @@ public class Area {
     public void setNombreArea(String nombreArea) {
         this.nombreArea = nombreArea;
     }
+
+    public Empleado getEmpleadoResp() {
+        return empleadoResp;
+    }
+
+    public void setEmpleadoResp(Empleado empleadoResp) {
+        this.empleadoResp = empleadoResp;
+    }
+
     
     
 }

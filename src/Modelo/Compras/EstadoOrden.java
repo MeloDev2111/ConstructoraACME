@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modelo;
+package Modelo.Compras;
 
 /**
  *
  * @author eddyf
  */
-public enum EstadoRequerimiento {
-    CREADO,PENDIENTE,OBSERVADO,APROBADO,CERRADO 
+public enum EstadoOrden {
+    PENDIENTE, APROBADO, ANULADO
 }

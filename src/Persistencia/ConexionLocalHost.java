@@ -14,11 +14,11 @@ public class ConexionLocalHost{
     private static final String url="jdbc:mysql://"
             + "localhost" //HOST
             + ":3306" //PORT
-            + "/ConstructoraAcme"; //DBNAME
+            + "/ConsultoraACME"; //DBNAME
     
     //Credenciales
     private static final String user="root";
-    private static final String pass="";
+    private static final String pass="Asdfmovie1234567";
     private static final String descripcion="LocalHost de Mysql";
 
     private ConexionLocalHost() {
@@ -29,7 +29,7 @@ public class ConexionLocalHost{
             try {
                 Class.forName(JDBC_Driver);
                 con = DriverManager.getConnection(url, user, pass);//"con" tipo Connection de clase conexion
-                System.out.println("Conexion establecida con Clever Cloud");
+                System.out.println("Conexion establecida con Local Host");
             } catch (ClassNotFoundException | SQLException e) {
                 System.out.println(e.getMessage());
             }

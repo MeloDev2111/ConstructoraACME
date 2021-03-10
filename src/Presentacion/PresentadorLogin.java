@@ -1,8 +1,8 @@
 package Presentacion;
 
 import Apoyo.Mensajes;
-import Modelo.Empleado;
-import Modelo.LogicaEmpleados;
+import Modelo.Organizacion.Empleado;
+import Modelo.Organizacion.LogicaEmpleados;
 import Modelo.Login.LogicaLogin;
 import Modelo.Login.Usuario;
 
@@ -62,7 +62,14 @@ public class PresentadorLogin {
                     
                     break;
                 case RESPONSABLECOMPRA:
-                    msg.advertenciaMsg("Mensajito!","PRONTO DISPONIBLE VISTA RESPONSABLECOMPRA, C;");
+                    
+                    VOrdenCompra vOrdenCompra = new VOrdenCompra();
+                    
+                    PresentadorOrdenCompra pOrdenCompra = new PresentadorOrdenCompra(vOrdenCompra);
+                    vOrdenCompra.setPresentador(pOrdenCompra);
+                    
+                    vOrdenCompra.iniciar();
+                    this.vista.cerrar();
                     break;  
                 default:
                     msg.advertenciaMsg("Mensajito!","SU VISTA AUN NO HA SIDO CREADA");

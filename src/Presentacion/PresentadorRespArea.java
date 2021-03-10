@@ -2,9 +2,9 @@ package Presentacion;
 
 import Apoyo.Formateo;
 import Apoyo.Mensajes;
-import Modelo.Empleado;
-import Modelo.LogicaRequerimientos;
-import Modelo.Requerimiento;
+import Modelo.Organizacion.Empleado;
+import Modelo.Organizacion.LogicaRequerimientos;
+import Modelo.Organizacion.Requerimiento;
 
 /* @author MeloDev */
 public class PresentadorRespArea {

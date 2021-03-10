@@ -2,11 +2,11 @@ package Presentacion;
 
 import Apoyo.Formateo;
 import Apoyo.Mensajes;
-import Modelo.Empleado;
+import Modelo.Organizacion.Empleado;
 import Modelo.Compras.LogicaPedidos;
 import Modelo.Compras.Pedido;
-import Modelo.Proyecto;
-import Modelo.Requerimiento;
+import Modelo.Organizacion.Proyecto;
+import Modelo.Organizacion.Requerimiento;
 
 /* @author MeloDev */
 public class PresentadorPedidos {

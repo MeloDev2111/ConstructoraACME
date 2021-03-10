@@ -7,6 +7,15 @@ public class OrdenCompra {
     private String tipoPago;
     private String formaPago;
     private Proveedor proveedor;
+    private EstadoOrden estado;
+    
+    public String getNombreEstado(){
+        return estado.name();
+    }
+    
+    public void setEstado(String estado){
+        this.estado = EstadoOrden.valueOf(estado);
+    }
 
     public String getIdOrden() {
         return idOrden;
@@ -47,6 +56,12 @@ public class OrdenCompra {
     public void setProveedor(Proveedor proveedor) {
         this.proveedor = proveedor;
     }
-    
-    
+
+    public EstadoOrden getEstado() {
+        return estado;
+    }
+
+    public void setEstado(EstadoOrden estado) {
+        this.estado = estado;
+    }
 }

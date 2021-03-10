@@ -22,7 +22,7 @@ public class CentroCosto {
         this.codigo = codigo;
     }
 
-    public String getNombreCosto() {
+    public String getNombreCentro() {
         return nombreCosto;
     }
 

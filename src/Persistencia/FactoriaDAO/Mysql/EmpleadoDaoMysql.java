@@ -1,6 +1,6 @@
 package Persistencia.FactoriaDAO.Mysql;
 
-import Modelo.Empleado;
+import Modelo.Organizacion.Empleado;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.sql.PreparedStatement;
@@ -14,19 +14,23 @@ public class EmpleadoDaoMysql implements IEmpleadoDao{
         conexion=con;
     }
 
-    @Override
-    public Empleado buscarxIdUsuario(String idUsuario) {
-        String sql ="SELECT * FROM Empleados WHERE idUsuario = ?";
-        Empleado em = null;
+        @Override
+    public ArrayList<Empleado> listado() {
+        String sql ="SELECT * FROM Empleados";
+        ArrayList<Empleado> lista = null;
         try {
             PreparedStatement st = this.conexion.prepareStatement(sql);
-            st.setString(1, idUsuario);
             
             ResultSet rs = st.executeQuery(); 
-            em = new Empleado();
+            lista = new ArrayList<>();
+
+            UsuarioDaoMysql daoUser = new UsuarioDaoMysql(conexion);
             while (rs.next()) {
+                Empleado em = new Empleado();
                 em.setIdEmpleado(rs.getString("idEmpleado"));
                 em.setNombre(rs.getString("nombre"));
+                em.setUser( daoUser.buscar( rs.getString("idUsuario") ) );
+                lista.add(em);
             }
             rs.close();
             st.close();
@@ -34,30 +38,82 @@ public class EmpleadoDaoMysql implements IEmpleadoDao{
             System.out.println(e.getMessage());
         } 
         
-        return em;
+        return lista;
+    }
+    
+    
+    @Override
+    public Empleado buscarxIdUsuario(String idUsuario) {
+        
+        ArrayList<Empleado> lista =listado();
+        
+        Empleado emp = null;
+        for (Empleado p : lista) {
+            if ( p.getUser().getIdUsuario().equals(idUsuario) ) {
+                emp = p;
+                return emp;
+            }
+        }
+        
+        return emp;
+//        String sql ="SELECT * FROM Empleados WHERE idUsuario = ?";
+//        Empleado em = null;
+//        try {
+//            PreparedStatement st = this.conexion.prepareStatement(sql);
+//            st.setString(1, idUsuario);
+//            
+//            ResultSet rs = st.executeQuery(); 
+//            em = new Empleado();
+//            while (rs.next()) {
+//                em.setIdEmpleado(rs.getString("idEmpleado"));
+//                em.setNombre(rs.getString("nombre"));
+//                //em.setUser(logi rs.getString(sql));
+//            }
+//            rs.close();
+//            st.close();
+//        } catch (Exception e) {
+//            System.out.println(e.getMessage());
+//        } 
+//        
+//        return em;
     }
     
     @Override
     public Empleado buscar(String idEmpleado) {
-        String sql ="SELECT * FROM Empleados WHERE idEmpleado = ?";
-        Empleado em = null;
-        try {
-            PreparedStatement st = this.conexion.prepareStatement(sql);
-            st.setString(1, idEmpleado);
-            
-            ResultSet rs = st.executeQuery(); 
-            em = new Empleado();
-            while (rs.next()) {
-                em.setIdEmpleado(rs.getString("idEmpleado"));
-                em.setNombre(rs.getString("nombre"));
-            }
-            rs.close();
-            st.close();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        } 
         
-        return em;
+        ArrayList<Empleado> lista =listado();
+        
+        Empleado emp = null;
+            
+        for (Empleado p : lista) {
+            if ( p.getIdEmpleado().equals(idEmpleado) ) {
+                emp = p;
+                return emp;
+            }
+        }
+        
+        return emp;
+//        
+//        String sql ="SELECT * FROM Empleados WHERE idEmpleado = ?";
+//        Empleado em = null;
+//        try {
+//            PreparedStatement st = this.conexion.prepareStatement(sql);
+//            st.setString(1, idEmpleado);
+//            
+//            ResultSet rs = st.executeQuery(); 
+//            em = new Empleado();
+//            while (rs.next()) {
+//                em.setIdEmpleado(rs.getString("idEmpleado"));
+//                em.setNombre(rs.getString("nombre"));
+//                //em.setUser(logi rs.getString(sql));
+//            }
+//            rs.close();
+//            st.close();
+//        } catch (Exception e) {
+//            System.out.println(e.getMessage());
+//        } 
+//        
+//        return em;
     }
 
     @Override
@@ -72,11 +128,6 @@ public class EmpleadoDaoMysql implements IEmpleadoDao{
 
     @Override
     public Empleado eliminar(Empleado obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public ArrayList<Empleado> listado() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

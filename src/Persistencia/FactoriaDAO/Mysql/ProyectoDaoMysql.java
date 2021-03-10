@@ -1,6 +1,6 @@
 package Persistencia.FactoriaDAO.Mysql;
 
-import Modelo.Proyecto;
+import Modelo.Organizacion.Proyecto;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.sql.PreparedStatement;
@@ -14,16 +14,16 @@ public class ProyectoDaoMysql implements IProyectoDao{
         conexion=con;
     }
 
+    
     @Override
-    public ArrayList<Proyecto> listarProyectosxEmpleado(String idEmpleado) {
-        String sql ="SELECT * FROM Proyectos WHERE idEmpleado = ?";
+    public ArrayList<Proyecto> listado() {
+        String sql ="SELECT * FROM Proyectos";
         ArrayList<Proyecto> lista =null;
         
         EmpleadoDaoMysql daoEmp = new EmpleadoDaoMysql(conexion);
         
         try {
-            PreparedStatement st = this.conexion.prepareStatement(sql);
-            st.setString(1, idEmpleado);   
+            PreparedStatement st = this.conexion.prepareStatement(sql); 
             
             lista = new ArrayList();
             ResultSet rs = st.executeQuery(); //ejecutar el codigo sql ya sea ddl o dml??//ITERATOR? QUE ES ESTO? 
@@ -45,6 +45,31 @@ public class ProyectoDaoMysql implements IProyectoDao{
         
         return lista;
     }
+    
+    
+    
+    
+    @Override
+    public ArrayList<Proyecto> listarProyectosxEmpleado(String idEmpleado) {
+        
+        ArrayList<Proyecto> lista =listado();
+        
+        ArrayList<Proyecto> listaFiltrada = new ArrayList();
+            
+        for (Proyecto p : lista) {
+            
+            if (p.getEmpleado()!=null) {
+                if ( p.getEmpleado().getIdEmpleado().equals(idEmpleado) ) {
+                    listaFiltrada.add(p);
+                }
+            }
+            
+        }
+        
+        return listaFiltrada;
+
+    }
+    
     
     @Override
     public Proyecto buscar(String idProyecto) {
@@ -79,11 +104,6 @@ public class ProyectoDaoMysql implements IProyectoDao{
     
     @Override
     public Proyecto registrar(Proyecto obj) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public ArrayList<Proyecto> listado() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

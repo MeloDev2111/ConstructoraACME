@@ -1,5 +1,6 @@
-package Modelo;
+package Modelo.Organizacion;
 
+import Modelo.IDBAccess;
 import Modelo.IDBAccess;
 import Persistencia.FactoriaDAO.IAreaDao;
 
@@ -12,5 +13,17 @@ public class LogicaArea implements IDBAccess{
     }
     public Area buscarAreaDeEmpleado(Empleado e){
         return dao.buscarxEmpleado(e);
+    }
+    
+    public void guardar(Area obj){
+        dao.registrar(obj);
+    }
+    
+    public void actualizar(Area obj){
+        dao.actualizar(obj);
+    }
+    
+    public void eliminar(Area obj){
+        dao.eliminar(obj);
     }
 }
