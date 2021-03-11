@@ -39,7 +39,7 @@ public class LogicaOrdenCompra implements IDBAccess {
             ord.setEstado(EstadoOrden.APROBADO);
             dao.actualizar(ord);
             msg.OKMsg("Orden de Compra Aprobado");
-            verificarPedidosCerrados(ord);
+            verificarPedidosOrdenAprobada(ord);
             return true;
         }else{
             msg.errorMsg("ESTADO NO PERMITIDO PARA SOLICITAR APROBACION : "
@@ -52,7 +52,7 @@ public class LogicaOrdenCompra implements IDBAccess {
     public boolean anular(OrdenCompra ord){
         if (isAnulable(ord)) {
             ord.setEstado(EstadoOrden.ANULADO);
-            this.restablecerPedidos(ord);
+            this.restablecerPedidosOrdenAnulada(ord);
             dao.actualizar(ord);
             msg.OKMsg("Orden de Compra Anulado!");
             return true;
@@ -64,7 +64,18 @@ public class LogicaOrdenCompra implements IDBAccess {
     }
     
     
-    private void verificarPedidosCerrados(OrdenCompra ord) {
+    private void verificarPedidosOrdenAprobada(OrdenCompra ord) {
+        for (DetalleOrden detalle : logiDetalle.cargarDetallesOrden(ord)) {
+            Pedido p = detalle.getPedido();
+            double valorActual = p.getCantidadRestante();
+            double valorDetalle = detalle.getCantidadCompra();
+            p.setCantidadRestante(valorActual - valorDetalle);
+            logiPedido.actualizar(p);
+        }
+    }
+        
+    private void restablecerPedidosOrdenAnulada(OrdenCompra ord) {
+        
         for (DetalleOrden detalle : logiDetalle.cargarDetallesOrden(ord)) {
             Pedido p = detalle.getPedido();
             double valorActual = p.getCantidadRestante();
@@ -72,17 +83,6 @@ public class LogicaOrdenCompra implements IDBAccess {
             p.setCantidadRestante(valorActual + valorDetalle);
             logiPedido.actualizar(p);
         }
-    }
-        
-    private void restablecerPedidos(OrdenCompra ord) {
-        //por trabajar
-//        for (DetalleOrden detalle : logiDetalle.cargarDetallesOrden(ord)) {
-//            Pedido p = detalle.getPedido();
-//            double valorActual = p.getCantidadRestante();
-//            double valorDetalle = detalle.getCantidadCompra();
-//            p.setCantidadRestante(valorActual + valorDetalle);
-//            logiPedido.actualizar(p);
-//        }
         
     }
     

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class LogicaCentroCostos implements IDBAccess{
     private ICentroCostoDao dao = fabrica.getCentroCostoDao();
     
-    public ArrayList<CentroCosto> cargarCentrosCosto (CentroCosto c){
+    public ArrayList<CentroCosto> cargarCentrosCosto (){
         return dao.listado();
     }
    

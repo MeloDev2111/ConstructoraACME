@@ -41,11 +41,42 @@ public class PresentadorOrdenCompra {
         );
     }
     
-    public void mostarVCrearOrdenCompra(){
-        msg.advertenciaMsg("PRONTO!", "IN PROCESS");
+    public void mostrarVDetalles() {
+        orden = logica.buscar(vista.getidSeleccionado());
+        VDetalleOrden vDetalle = new VDetalleOrden();
+        PDetalleOrden pDetalle = new PDetalleOrden(vDetalle, orden);
+        vDetalle.setPresentador(pDetalle);
+        
+        vDetalle.iniciar();
+        this.vista.cerrar();
     }
+    
+    public void mostarVCrearOrdenCompra(){
+        VCrearEditarOrden vModOrden = new VCrearEditarOrden();
+        PCrearEditarOrden pModOrden = new PCrearEditarOrden(vModOrden);
+        vModOrden.setPresentador(pModOrden);
+        vModOrden.deshabilitarBotones();
+        vModOrden.habilitarBtnsEmpleadoAgregar();
+        pModOrden.cargarOpciones();
+        
+        vModOrden.iniciar();
+        
+        establecerTablaOrdenes();
+    }
+    
     public void mostarEditarOrdenCompra(){
-        msg.advertenciaMsg("PRONTO!", "IN PROCESS");
+        orden = logica.buscar(vista.getidSeleccionado());
+        VCrearEditarOrden vModOrden = new VCrearEditarOrden();
+        PCrearEditarOrden pModOrden = new PCrearEditarOrden(vModOrden, orden);
+        vModOrden.setPresentador(pModOrden);
+        vModOrden.deshabilitarBotones();
+        vModOrden.habilitarBtnsEmpleadoModificar();
+        pModOrden.cargarOpciones();
+        
+        pModOrden.cargarDatos();
+        vModOrden.iniciar();
+        
+        establecerTablaOrdenes();
     }
     
     public void aprobar(){
@@ -65,10 +96,5 @@ public class PresentadorOrdenCompra {
             }
         }
     }
-
-    void mostrarVDetalles() {
-        msg.advertenciaMsg("PRONTO!", "IN PROCESS");
-    }
-
     
 }

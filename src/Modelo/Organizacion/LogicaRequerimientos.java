@@ -22,7 +22,7 @@ public class LogicaRequerimientos implements IDBAccess{
     
     public ArrayList<Requerimiento> cargarRequerimientosProyectoEmpleado (Proyecto p){
         List<Requerimiento> lista = dao.listarRequerimientosxProyecto(p.getIdProyecto());
-        System.out.println("llegue a los filter");    
+        
         List<Requerimiento> listaFiltrada = lista
         .stream()
         .filter(x -> x.getEstado() == EstadoRequerimiento.CREADO 
@@ -32,7 +32,7 @@ public class LogicaRequerimientos implements IDBAccess{
         if (listaFiltrada==null || listaFiltrada.isEmpty()) {
             msg.advertenciaMsg("OJO", "no tiene requerimiento por revisar");
         }
-        System.out.println("sali a los filter");
+        
         return (ArrayList<Requerimiento>) listaFiltrada;
     }
     

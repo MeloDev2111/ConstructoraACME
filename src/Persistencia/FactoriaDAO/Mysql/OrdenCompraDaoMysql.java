@@ -54,16 +54,16 @@ public class OrdenCompraDaoMysql implements IOrdenCompraDao{
     public OrdenCompra buscar(String id) {
         ArrayList<OrdenCompra> lista =listado();
 
-            OrdenCompra orden = null;
+        OrdenCompra orden = null;
 
-            for (OrdenCompra ord : lista) {
-                if ( ord.getIdOrden().equals(id) ) {
-                    orden = ord;
-                    return orden;
-                }
+        for (OrdenCompra ord : lista) {
+            if ( ord.getIdOrden().equals(id) ) {
+                orden = ord;
+                return orden;
             }
+        }
 
-            return orden;
+        return orden;
     }
 
     

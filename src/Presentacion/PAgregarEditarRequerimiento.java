@@ -70,7 +70,7 @@ public class PAgregarEditarRequerimiento {
     
     public void cargarListadoAreas(){
         vista.mostrarListaAreas(
-            format.formatoJtableAreas(
+            format.formatoCboxAreas(
                     logiArea.cargarListaAreas()
             )
         );

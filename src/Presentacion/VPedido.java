@@ -35,7 +35,7 @@ public class VPedido extends javax.swing.JPanel {
 
         PanelResponsableArea = new javax.swing.JPanel();
         btnObservacion = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnVolverRespArea = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtObservacion = new javax.swing.JTextArea();
         btnConsultar = new javax.swing.JButton();
@@ -65,10 +65,10 @@ public class VPedido extends javax.swing.JPanel {
             }
         });
 
-        jButton2.setText("Volver");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnVolverRespArea.setText("Volver");
+        btnVolverRespArea.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnVolverRespAreaActionPerformed(evt);
             }
         });
 
@@ -93,7 +93,7 @@ public class VPedido extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(PanelResponsableAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnObservacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnVolverRespArea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane2)
                     .addComponent(btnConsultar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -108,7 +108,7 @@ public class VPedido extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(btnObservacion)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnVolverRespArea, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -346,9 +346,9 @@ public class VPedido extends javax.swing.JPanel {
         presentador.observar();
     }//GEN-LAST:event_btnObservacionActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnVolverRespAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverRespAreaActionPerformed
         presentador.backVRespArea();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnVolverRespAreaActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         presentador.mostrarListaMateriales();
@@ -457,7 +457,7 @@ public class VPedido extends javax.swing.JPanel {
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnObservacion;
     private javax.swing.JButton btnVolverEmpleado;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnVolverRespArea;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField1;

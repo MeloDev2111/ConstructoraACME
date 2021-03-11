@@ -109,7 +109,13 @@ public class PresentadorPedidos {
     }
 
     public void modificar() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        pedido = logica.buscar(vista.getidPedidoSeleccionado());
+        VModificarPedido vModPedido = new VModificarPedido();
+        PModificarPedido pModPedido = new PModificarPedido(vModPedido, pedido);
+        vModPedido.setPresentador(pModPedido);
+        pModPedido.cargar();
+        
+        vModPedido.iniciar();        
     }
 
     public void eliminar() {

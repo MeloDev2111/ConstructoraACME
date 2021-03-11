@@ -9,7 +9,7 @@ public class LogicaProveedores implements IDBAccess{
     IProveedorDao dao = fabrica.getProveedorDao();
     
     
-    public ArrayList<Proveedor> cargarProveedores (Proveedor r){
+    public ArrayList<Proveedor> cargarProveedores (){
         return dao.listado();
     }
    

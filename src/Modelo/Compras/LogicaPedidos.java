@@ -33,5 +33,7 @@ public class LogicaPedidos implements IDBAccess{
     public void eliminar(Pedido pedido){
         dao.eliminar(pedido);
     }
+    
+    
 
 }
